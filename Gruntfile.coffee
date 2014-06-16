@@ -52,9 +52,6 @@ module.exports = (grunt) ->
 				tasks: ['uglify','copy']
 
 		uglify:
-			# homepage:
-			# 	files:
-			# 		'': []
 			global:
 				files:
 					'cvc/js/global.min.js': [

@@ -5845,7 +5845,7 @@ meta.foundation-mq-topbar {
 /* Wrapped around .top-bar to contain to grid width */
 .contain-to-grid {
   width: 100%;
-  background: #333333;
+  background: #184895;
 }
 .contain-to-grid .top-bar {
   margin-bottom: 0;
@@ -5879,7 +5879,7 @@ meta.foundation-mq-topbar {
   height: 45px;
   line-height: 45px;
   position: relative;
-  background: #333333;
+  background: #184895;
   margin-bottom: 0;
 }
 .top-bar ul {
@@ -5974,7 +5974,7 @@ meta.foundation-mq-topbar {
   background: transparent;
 }
 .top-bar.expanded .title-area {
-  background: #333333;
+  background: #184895;
 }
 .top-bar.expanded .toggle-topbar a {
   color: #888888;
@@ -6214,7 +6214,7 @@ meta.foundation-mq-topbar {
 
 @media only screen and (min-width: 40.063em) {
   .top-bar {
-    background: #333333;
+    background: #184895;
     overflow: visible;
   }
   .top-bar:before, .top-bar:after {
@@ -6241,7 +6241,7 @@ meta.foundation-mq-topbar {
     top: 7px;
   }
   .top-bar.expanded {
-    background: #333333;
+    background: #184895;
   }
 
   .contain-to-grid .top-bar {
@@ -6272,7 +6272,7 @@ meta.foundation-mq-topbar {
   .top-bar-section li:not(.has-form) a:not(.button) {
     padding: 0 15px;
     line-height: 45px;
-    background: #333333;
+    background: #184895;
   }
   .top-bar-section li:not(.has-form) a:not(.button):hover {
     background: #272727;
@@ -6366,7 +6366,7 @@ meta.foundation-mq-topbar {
     width: 0;
   }
   .top-bar-section .has-form {
-    background: #333333;
+    background: #184895;
     padding: 0 15px;
     height: 45px;
   }
@@ -11256,4 +11256,45 @@ th.hide-for-touch {
   -moz-animation-name: wobble;
   -o-animation-name: wobble;
   animation-name: wobble;
+}
+
+/* Header Area */
+.title-area img {
+  max-height: 45px;
+}
+.title-area a {
+  color: white;
+}
+
+.breadcrumbs {
+  margin-top: 1em;
+}
+
+@media screen and (max-width: 600px) {
+  #wpadminbar {
+    margin-top: -46px !important;
+  }
+}
+
+/* Wordpress Utility Classes */
+img.aligncenter {
+  margin: 0 auto;
+  display: block;
+}
+
+/* Footer Area */
+.wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto-110px;
+}
+
+footer {
+  background: #184895;
+  color: #e6e6fc;
+  height: 110px;
+}
+footer img {
+  max-height: 37px;
 }

@@ -9,34 +9,37 @@
 		<?php wp_head(); ?>
 	</head>
 	<body <?php body_class(); ?>>
+		<div class="wrapper">
+			<nav class="top-bar" data-topbar>
+				<ul class="title-area">
+					<li class="name">
+						<a href="<?php echo home_url(); ?>">
+							<img src="<?php echo get_stylesheet_directory_uri() ?>/img/cvc-logo.png"/>
+							<?php bloginfo('name'); ?> 
+						</a>
+					</li>
+					<li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+				</ul>
 
-		<nav class="top-bar" data-topbar>
-			<ul class="title-area">
-				<li class="name">
-					<h1><a href="#"><?php echo get_bloginfo(); ?></a></h1>
-				</li>
-				<li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
-			</ul>
+				<section class="top-bar-section">
+					<!-- Right Nav Section -->
+					<?php
+					wp_nav_menu(
+						array(
+							'theme_location' => 'header-menu',
+							'container' => false,
+							'depth' => 2,
+							'items_wrap' => '<ul id="%1$s" class="right %2$s">%3$s</ul>',
+							'walker' => new Foundation_Navigation_Walker()
+						)
+					);
+					?>
 
-			<section class="top-bar-section">
-				<!-- Right Nav Section -->
-				<?php
-				wp_nav_menu(
-					array(
-						'theme_location' => 'header-menu',
-						'container' => false,
-						'depth' => 2,
-						'items_wrap' => '<ul id="%1$s" class="right %2$s">%3$s</ul>',
-						'walker' => new Foundation_Navigation_Walker()
-					)
-				);
-				?>
-
-				<!-- Left Nav Section -->
-			<!-- 			
-				<ul class="left">
-					<li><a href="#">Logo</a></li>
-				</ul> 
-			-->
-			</section>
-		</nav>
+					<!-- Left Nav Section -->
+				<!-- 			
+					<ul class="left">
+						<li><a href="#">Logo</a></li>
+					</ul> 
+				-->
+				</section>
+			</nav>

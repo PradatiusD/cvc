@@ -15,8 +15,50 @@
 
 // @import url("http://fonts.googleapis.com/css?family=Lato:300,400,700,900,400italic")
 
+$blue: #184895
+
 @import "bower_components/foundation/scss/normalize"
+
+$topbar-bg: $blue
+
 @import "bower_components/foundation/scss/foundation"
 @import "bower_components/animate.scss/animate"
 @import "bower_components/bourbon/app/assets/stylesheets/bourbon"
 @import "bower_components/sass-mediaqueries/media-queries"
+
+/* Header Area */
+.title-area 
+	img
+		max-height: 45px
+	a
+		color: white
+
+.breadcrumbs
+	margin-top: 1em
+
+#wpadminbar
+	+max-screen(600px)
+		margin-top: -46px !important
+
+/* Wordpress Utility Classes */
+img.aligncenter
+	margin: 0 auto
+	display: block
+
+/* Footer Area */
+$footerHeight: 110px
+
+// For sticky footer
+.wrapper
+	min-height: 100%
+	height: auto !important
+	height: 100%
+	margin: 0 auto -$footerHeight
+
+
+footer
+	background: $blue
+	color: #E6E6FC
+	height: $footerHeight
+	img
+		max-height: 37px
