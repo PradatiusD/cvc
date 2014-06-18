@@ -13,25 +13,59 @@
  * Use it to make something cool, have fun, and share what you've learned with others.
  *  */
 
-// @import url("http://fonts.googleapis.com/css?family=Lato:300,400,700,900,400italic")
-
 $blue: #184895
 
+@import url("http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400")
 @import "bower_components/foundation/scss/normalize"
-
-$topbar-bg: $blue
-
-@import "bower_components/foundation/scss/foundation"
 @import "bower_components/animate.scss/animate"
 @import "bower_components/bourbon/app/assets/stylesheets/bourbon"
 @import "bower_components/sass-mediaqueries/media-queries"
+
+// Typography
+
+$body-font-family: $helvetica
+$cvcHeaderFont: "Roboto Condensed", $body-font-family
+
+$header-font-family: $cvcHeaderFont
+h1, h2, h3, h4, h5, h6
+	&.subheader
+		font-family: $helvetica
+
+// Navigation/Header
+
+$topbar-bg: $blue
+$topbar-height: 55px
+$topbar-link-font-family: $cvcHeaderFont
+$topbar-link-font-size: 1.1em
+
+.top-bar a
+	font-family: $cvcHeaderFont
+	text-transform: uppercase
+
+header
+	background: $blue
+
+// Buttons
+$button-font-family: $cvcHeaderFont
+
+@import "bower_components/foundation/scss/foundation"
+
+
 
 /* Header Area */
 .title-area 
 	img
 		max-height: 45px
+		padding-bottom: 4px
 	a
 		color: white
+		font-size: 1.3em
+		display: inline-block
+		padding-top: 0.3em
+		span
+			display: none
+			+min-screen(40.063em)
+				display: inline
 
 .breadcrumbs
 	margin-top: 1em
@@ -41,9 +75,13 @@ $topbar-bg: $blue
 		margin-top: -46px !important
 
 /* Wordpress Utility Classes */
-img.aligncenter
-	margin: 0 auto
-	display: block
+img
+	&.aligncenter
+		margin: 0 auto
+		display: block
+
+	&.full-width
+		width: 100%
 
 /* Footer Area */
 $footerHeight: 110px
@@ -62,3 +100,18 @@ footer
 	height: $footerHeight
 	img
 		max-height: 37px
+
+/* Homepage */
+.home-header
+	background: url('img/cvc-building.jpg')
+	background-size: cover
+	background-position: center
+	padding: 2em 0
+
+	h1, h3
+		color: white
+		background: rgba(8, 8, 91, 0.5)
+		padding: 0.5em 12px
+
+	h3
+		font-weight: 300
