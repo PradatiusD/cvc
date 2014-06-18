@@ -56,7 +56,8 @@ module.exports = (grunt) ->
 				files:
 					'cvc/js/global.min.js': [
 						'bower_components/foundation/js/foundation.js',
-						'bower_components/foundation/js/foundation/foundation.topbar.js'
+						'bower_components/foundation/js/foundation/foundation.topbar.js',
+						'bower_components/imagelightbox/dist/imagelightbox.min.js'
 					]
 	)
 

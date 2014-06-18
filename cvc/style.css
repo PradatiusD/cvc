@@ -4305,6 +4305,58 @@ th {
   animation-name: wobble;
 }
 
+#imagelightbox {
+  position: fixed;
+  z-index: 15;
+}
+
+#imagelightboxmask {
+  position: fixed;
+  background: #000;
+  background: rgba(0, 0, 0, 0.9);
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+}
+
+.imagelightboxcontrol {
+  z-index: 20;
+  color: #fff;
+  position: fixed;
+  font-weight: 700;
+  font-size: 34px;
+  text-decoration: none;
+}
+
+.imagelightboxcontrol:hover {
+  text-decoration: none;
+}
+
+#imagelightboxclose {
+  top: 10px;
+  right: 30px;
+}
+
+#imagelightboxprev {
+  top: 50%;
+  left: 0;
+  width: 20px;
+  height: 34px;
+  background: url(../img/prev_arrow.png) no-repeat 50% 50%;
+  padding: 30px;
+}
+
+#imagelightboxnext {
+  top: 50%;
+  right: 0;
+  width: 20px;
+  height: 34px;
+  background: url(../img/next_arrow.png) no-repeat 50% 50%;
+  padding: 30px;
+}
+
 h1.subheader, h2.subheader, h3.subheader, h4.subheader, h5.subheader, h6.subheader {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
@@ -4312,6 +4364,9 @@ h1.subheader, h2.subheader, h3.subheader, h4.subheader, h5.subheader, h6.subhead
 .top-bar a {
   font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
+  -webkit-transition: background 0.15s ease-in-out;
+  -moz-transition: background 0.15s ease-in-out;
+  transition: background 0.15s ease-in-out;
 }
 
 header {
@@ -9914,7 +9969,7 @@ meta.foundation-mq-topbar {
   width: 100%;
 }
 .top-bar-section ul li {
-  background: #333333;
+  background: #113369;
 }
 .top-bar-section ul li > a {
   display: block;
@@ -10022,7 +10077,7 @@ meta.foundation-mq-topbar {
   color: white;
 }
 .top-bar-section ul li:hover:not(.has-form) > a {
-  background: #272727;
+  background: #113369;
   color: white;
 }
 .top-bar-section ul li.active > a {
@@ -10175,7 +10230,7 @@ meta.foundation-mq-topbar {
     display: none;
   }
   .top-bar-section li.hover > a:not(.button) {
-    background: #272727;
+    background: #113369;
     color: white;
   }
   .top-bar-section li:not(.has-form) a:not(.button) {
@@ -10184,7 +10239,7 @@ meta.foundation-mq-topbar {
     background: #184895;
   }
   .top-bar-section li:not(.has-form) a:not(.button):hover {
-    background: #272727;
+    background: #113369;
   }
   .top-bar-section li.active:not(.has-form) a:not(.button) {
     padding: 0 18.33333px;
@@ -10248,15 +10303,15 @@ meta.foundation-mq-topbar {
     line-height: 55px;
     white-space: nowrap;
     padding: 12px 18.33333px;
-    background: #333333;
+    background: #113369;
   }
   .top-bar-section .dropdown li:not(.has-form) a:not(.button) {
     color: white;
-    background: #333333;
+    background: #113369;
   }
   .top-bar-section .dropdown li:not(.has-form):hover > a:not(.button) {
     color: white;
-    background: #272727;
+    background: #113369;
   }
   .top-bar-section .dropdown li label {
     white-space: nowrap;
@@ -10295,7 +10350,7 @@ meta.foundation-mq-topbar {
   }
 
   .no-js .top-bar-section ul li:hover > a {
-    background: #272727;
+    background: #113369;
     color: white;
   }
   .no-js .top-bar-section ul li:active > a {
@@ -11079,13 +11134,27 @@ img.full-width {
   min-height: 100%;
   height: auto !important;
   height: 100%;
-  margin: 0 auto-110px;
+  margin: 0 auto-330px;
 }
 
 footer {
   background: #184895;
   color: #e6e6fc;
-  height: 110px;
+  height: 330px;
+}
+footer .footer-details {
+  font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+  font-size: 1.2em;
+  position: relative;
+  top: 2px;
+}
+footer a {
+  color: white;
+}
+footer h4 {
+  text-transform: uppercase;
+  color: #cedef7;
 }
 footer img {
   max-height: 37px;
@@ -11105,4 +11174,24 @@ footer img {
 }
 .home-header h3 {
   font-weight: 300;
+}
+
+/* Lightbox plugin */
+#imagelightbox-caption {
+  text-align: center;
+  color: white;
+  background-color: #113369;
+  position: fixed;
+  z-index: 10001;
+  font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1.7em;
+  text-transform: uppercase;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.625em;
+}
+
+#imagelightbox {
+  cursor: pointer;
 }

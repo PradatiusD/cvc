@@ -14,12 +14,14 @@
  *  */
 
 $blue: #184895
+$darKBlue: darken($blue, 10%)
 
 @import url("http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400")
 @import "bower_components/foundation/scss/normalize"
 @import "bower_components/animate.scss/animate"
 @import "bower_components/bourbon/app/assets/stylesheets/bourbon"
 @import "bower_components/sass-mediaqueries/media-queries"
+@import "bower_components/imagelightbox/dist/imagelightbox.min.scss"
 
 // Typography
 
@@ -37,10 +39,14 @@ $topbar-bg: $blue
 $topbar-height: 55px
 $topbar-link-font-family: $cvcHeaderFont
 $topbar-link-font-size: 1.1em
+$topbar-dropdown-bg: $darKBlue
+$topbar-dropdown-link-bg: $darKBlue
+$topbar-link-bg-hover: $darKBlue
 
 .top-bar a
 	font-family: $cvcHeaderFont
 	text-transform: uppercase
+	+transition(background 0.15s ease-in-out)
 
 header
 	background: $blue
@@ -49,8 +55,6 @@ header
 $button-font-family: $cvcHeaderFont
 
 @import "bower_components/foundation/scss/foundation"
-
-
 
 /* Header Area */
 .title-area 
@@ -84,7 +88,7 @@ img
 		width: 100%
 
 /* Footer Area */
-$footerHeight: 110px
+$footerHeight: 330px
 
 // For sticky footer
 .wrapper
@@ -98,6 +102,21 @@ footer
 	background: $blue
 	color: #E6E6FC
 	height: $footerHeight
+
+	.footer-details
+		font-family: $cvcHeaderFont
+		text-transform: uppercase
+		font-size: 1.2em
+		position: relative
+		top: 2px
+
+	a
+		color: lighten($blue, 75%)
+
+	h4
+		text-transform: uppercase
+		color: lighten($blue, 55%)
+
 	img
 		max-height: 37px
 
@@ -115,3 +134,22 @@ footer
 
 	h3
 		font-weight: 300
+
+/* Lightbox plugin */
+
+#imagelightbox-caption
+	text-align: center
+	color: #fff
+	background-color: $darKBlue
+	position: fixed
+	z-index: 10001
+	font-family: $cvcHeaderFont
+	font-size: 1.7em
+	text-transform: uppercase
+	left: 0
+	right: 0
+	bottom: 0
+	padding: 0.625em
+
+#imagelightbox
+	cursor: pointer

@@ -20,7 +20,7 @@
 					<?php endif;?>
 
 				<?php the_post_thumbnail('full'); ?> 
-								
+
 				<?php
 					the_content('Read more...');
 				?>

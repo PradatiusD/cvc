@@ -86,3 +86,115 @@
 		}
 		
 	}
+
+	function add_footer_widgets() {
+
+		$common = array(
+			'before_widget' => '<div class="small-12 medium-3 columns">',
+			'after_widget' => '</div>',
+			'before_title' => '<h4 class="rounded">',
+			'after_title' => '</h4>'
+		);
+
+		register_sidebar(
+			array_merge($common, array(
+				'name' => 'Footer Widget Area 1',
+				'id' => 'footer1'
+				)
+			)
+		);
+
+		register_sidebar(
+			array_merge($common, array(
+				'name' => 'Footer Widget Area 2',
+				'id' => 'footer2'
+				)
+			)
+		);
+
+		register_sidebar(
+			array_merge($common, array(
+				'name' => 'Footer Widget Area 3',
+				'id' => 'footer3'
+				)
+			)
+		);
+
+		register_sidebar(
+			array_merge($common, array(
+				'name' => 'Footer Widget Area 4',
+				'id' => 'footer4'
+				)
+			)
+		);
+	}
+
+	add_action( 'widgets_init', 'add_footer_widgets' );
+
+	/**
+	 * For Custom Gallery
+	 */
+	remove_shortcode('gallery');
+	add_shortcode('gallery', 'cvc_gallery_shortcode');
+
+	function cvc_gallery_shortcode($atts) {
+		
+		global $post;
+		
+		if ( ! empty( $atts['ids'] ) ) {
+			// 'ids' is explicitly ordered, unless you specify otherwise.
+			if ( empty( $atts['orderby'] ) )
+				$atts['orderby'] = 'post__in';
+			$atts['include'] = $atts['ids'];
+		}
+		
+		extract(shortcode_atts(array(
+			'orderby' => 'menu_order ASC, ID ASC',
+			'include' => '',
+			'id' => $post->ID,
+			'itemtag' => 'dl',
+			'icontag' => 'dt',
+			'captiontag' => 'dd',
+			'columns' => 3,
+			'size' => 'medium',
+			'link' => 'file'
+			), $atts));
+		
+		
+		$args = array(
+			'post_type' => 'attachment',
+			'post_status' => 'inherit',
+			'post_mime_type' => 'image',
+			'orderby' => $orderby
+			);
+		
+		if ( !empty($include) )
+			$args['include'] = $include;
+		else {
+			$args['post_parent'] = $id;
+			$args['numberposts'] = -1;
+		}
+		
+		$images = get_posts($args);
+		ob_start();
+		?>
+		<section class="gallery">
+
+			<?php foreach ( $images as $image ):     
+
+					$caption = $image->post_excerpt;					
+					$description = $image->post_content;
+					if($description == '') $description = $image->post_title;
+					$image_alt = get_post_meta($image->ID,'_wp_attachment_image_alt', true);
+				?>
+				<a href="<?php echo wp_get_attachment_image_src($image->ID, 'full')[0];?>" class="lightbox">
+					
+					<img class="th" src="<?php echo wp_get_attachment_image_src( $image->ID, 'thumbnail')[0];?>" alt="<?php echo $description;?>">
+				</a>
+			<?php endforeach; ?>
+		</section>
+
+		<?php
+		$content = ob_get_clean();
+		echo $content;
+	}
