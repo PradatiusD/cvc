@@ -16,7 +16,7 @@
 $blue: #184895
 $darKBlue: darken($blue, 10%)
 
-@import url("http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400")
+@import url("http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400|Roboto:400,700,400italic,700italic,300")
 @import "bower_components/foundation/scss/normalize"
 @import "bower_components/animate.scss/animate"
 @import "bower_components/bourbon/app/assets/stylesheets/bourbon"
@@ -25,13 +25,14 @@ $darKBlue: darken($blue, 10%)
 
 // Typography
 
-$body-font-family: $helvetica
+$body-font-family: "Roboto", $helvetica
 $cvcHeaderFont: "Roboto Condensed", $body-font-family
 
 $header-font-family: $cvcHeaderFont
 h1, h2, h3, h4, h5, h6
 	&.subheader
-		font-family: $helvetica
+		font-family: $body-font-family
+		font-weight: 300
 
 // Navigation/Header
 
