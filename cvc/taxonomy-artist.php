@@ -3,6 +3,7 @@
 	$exhibitions    = array();
 	$press_releases = array();
 	$events         = array();
+	global $wp_query;
 ?>
 
 <?php
@@ -69,21 +70,29 @@
 ?>
 
 <div class="row">
-	<ul class="tabs" data-tab>
-		<?php 
-			create_tab($exhibitions);
-			create_tab($press_releases);
-			create_tab($events);
-		?>
-	</ul>
-	<div class="tabs-content">
-		<?php
-			// Reset Counter
-			$counter = 0;
-			create_tab_content($exhibitions);
-			create_tab_content($press_releases);
-			create_tab_content($events);
-		?>
+	<div class="small-12 columns">
+		<?php the_breadcrumb();?>
+		<div class="archive-header">
+			<h1><?php echo $wp_query->queried_object->name; ?></h1>
+			<h2 class="subheader"><?php echo $wp_query->queried_object->description; ?></h2>
+		</div>
+		<hr>
+		<ul class="tabs" data-tab>
+			<?php 
+				create_tab($exhibitions);
+				create_tab($press_releases);
+				create_tab($events);
+			?>
+		</ul>
+		<div class="tabs-content">
+			<?php
+				// Reset Counter
+				$counter = 0;
+				create_tab_content($exhibitions);
+				create_tab_content($press_releases);
+				create_tab_content($events);
+			?>
+		</div>
 	</div>
 </div>
 <?php get_footer();?>

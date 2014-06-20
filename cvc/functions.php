@@ -52,13 +52,18 @@
 			if (is_category() || is_single()) {
 
 				$crumb .= '<li>';
-				$crumb .= '<a href="'.get_category_link($cat[0]->cat_ID).'">' . $cat[0]->name . "</a>";
+				$crumb .= '<a href="'.get_post_type_archive_link(). '">' . get_post_type(). "</a>";
 
 				if (is_single()) {
 					$crumb .= '</li>';
 					$crumb .= '<li class="current">'. get_the_title() . '</li>';
 				}
+			} else if(is_post_type_archive()){
+
+				$crumb .= '<li class="current">'. get_post_type() .'</li>';
+
 			} elseif (is_page()) {
+
 				if($post->post_parent){
 					$anc = get_post_ancestors( $post->ID );
 					$title = get_the_title();
@@ -198,3 +203,56 @@
 		$content = ob_get_clean();
 		echo $content;
 	}
+
+	function cvc_display_map( $atts ){
+		ob_start();?>
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script>
+		var map;
+		function initialize() {
+
+			var cvcLatLng = new google.maps.LatLng(25.802085, -80.203986)
+			
+			var mapOptions = {
+				zoom: 16,
+				center: cvcLatLng
+			};
+			
+			map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
+
+			var marker = new google.maps.Marker({
+				position: cvcLatLng,
+				map: map,
+				title: 'CVC'
+			});
+
+			var contentString = '<div id="content" style="width:250px;">'+
+									'<hr><div id="bodyContent">'+
+										'<p><address>'+
+											'541 NW 27th Street<br/>Miami, FL 33127<br/>305-571-1415' +
+										'</address></p>'+
+									'</div><hr>'+
+								'</div>';
+
+			var infowindow = new google.maps.InfoWindow({
+				content: contentString
+			});
+
+			google.maps.event.addListener(marker, 'click', function() {
+				infowindow.open(map,marker);
+			});
+
+		}
+
+		google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+    <div id="map-canvas" style="height:600px;"></div>
+
+	<?php
+		$content = ob_get_clean();
+		return $content;
+	}
+	add_shortcode( 'cvc_map', 'cvc_display_map' );

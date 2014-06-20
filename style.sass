@@ -14,7 +14,7 @@
  *  */
 
 $blue: #184895
-$darKBlue: darken($blue, 10%)
+$darkBlue: darken($blue, 10%)
 
 @import url("http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400|Roboto:400,700,400italic,700italic,300")
 @import "bower_components/foundation/scss/normalize"
@@ -40,9 +40,9 @@ $topbar-bg: $blue
 $topbar-height: 55px
 $topbar-link-font-family: $cvcHeaderFont
 $topbar-link-font-size: 1.1em
-$topbar-dropdown-bg: $darKBlue
-$topbar-dropdown-link-bg: $darKBlue
-$topbar-link-bg-hover: $darKBlue
+$topbar-dropdown-bg: $darkBlue
+$topbar-dropdown-link-bg: $darkBlue
+$topbar-link-bg-hover: $darkBlue
 
 .top-bar a
 	font-family: $cvcHeaderFont
@@ -94,15 +94,26 @@ $footerHeight: 330px
 // For sticky footer
 .wrapper
 	min-height: 100%
-	height: auto !important
-	height: 100%
-	margin: 0 auto -$footerHeight
 
+.main-wrapper
+	overflow: auto
+	padding-bottom: $footerHeight
+
+footer
+	height: $footerHeight
+	+max-screen(640px)
+		height: auto
+
+	position: relative
+	margin-top: -$footerHeight
+	clear: both
+
+
+// Regular footer styling
 
 footer
 	background: $blue
 	color: #E6E6FC
-	height: $footerHeight
 
 	.footer-details
 		font-family: $cvcHeaderFont
@@ -136,12 +147,37 @@ footer
 	h3
 		font-weight: 300
 
+/* Taxonomy Arcihve */
+.archive-header
+	margin-top: 1em
+	h1
+		color: $darkBlue
+
+
+/* Google Map Shortcode */
+#map-canvas
+	
+	.gm-style-iw
+		left: 7% !important
+
+	#content
+		text-align: center
+	
+		address
+			font-size: 1.4em
+			text-align: center
+			text-transform: uppercase
+			font-family: $cvcHeaderFont
+			font-weight: 400
+			font-style: normal
+			letter-spacing: 0.5px
+
 /* Lightbox plugin */
 
 #imagelightbox-caption
 	text-align: center
 	color: #fff
-	background-color: $darKBlue
+	background-color: $darkBlue
 	position: fixed
 	z-index: 10001
 	font-family: $cvcHeaderFont

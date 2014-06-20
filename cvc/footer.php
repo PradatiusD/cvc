@@ -1,6 +1,6 @@
-			<?php wp_footer();?>
+				<?php wp_footer();?>
+			</div>
 		</div>
-		<div class="footer-push"></div>
 		<footer>
 			<div class="row">
 				<?php dynamic_sidebar('footer1'); ?>

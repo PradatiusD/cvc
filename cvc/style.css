@@ -11133,15 +11133,28 @@ img.full-width {
 /* Footer Area */
 .wrapper {
   min-height: 100%;
-  height: auto !important;
-  height: 100%;
-  margin: 0 auto-330px;
+}
+
+.main-wrapper {
+  overflow: auto;
+  padding-bottom: 330px;
+}
+
+footer {
+  height: 330px;
+  position: relative;
+  margin-top: -330px;
+  clear: both;
+}
+@media screen and (max-width: 640px) {
+  footer {
+    height: auto;
+  }
 }
 
 footer {
   background: #184895;
   color: #e6e6fc;
-  height: 330px;
 }
 footer .footer-details {
   font-family: "Roboto Condensed", "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -11175,6 +11188,31 @@ footer img {
 }
 .home-header h3 {
   font-weight: 300;
+}
+
+/* Taxonomy Arcihve */
+.archive-header {
+  margin-top: 1em;
+}
+.archive-header h1 {
+  color: #113369;
+}
+
+/* Google Map Shortcode */
+#map-canvas .gm-style-iw {
+  left: 7% !important;
+}
+#map-canvas #content {
+  text-align: center;
+}
+#map-canvas #content address {
+  font-size: 1.4em;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: "Roboto Condensed", "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 0.5px;
 }
 
 /* Lightbox plugin */

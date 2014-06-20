@@ -13,8 +13,18 @@ Miami FL 33127<br>
 </address>
 
 <h4>Hours</h4>
-Tuesday - Friday: 10am - 5pm<br>	
-Saturday: 12pm - 5pm
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Tuesday-Friday</strong></td>
+      <td>10am – 5pm</td>
+    </tr>
+    <tr>
+      <td><strong>Saturday</strong></td>
+      <td>12pm – 5pm</td>
+    </tr>
+  </tbody>
+</table>
 ```
 
 ## Helpful links for Dev

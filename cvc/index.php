@@ -22,7 +22,9 @@
 				<?php the_post_thumbnail('full'); ?> 
 
 				<?php
-					the_content('Read more...');
+					if (!is_post_type_archive()) {
+						the_content('Read more...');
+					}
 				?>
 			<?php endwhile;?>
 			<?php else: ?>
