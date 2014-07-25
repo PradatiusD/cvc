@@ -4371,7 +4371,7 @@ h1.subheader, h2.subheader, h3.subheader, h4.subheader, h5.subheader, h6.subhead
 }
 
 header {
-  background: #184895;
+  background: white;
 }
 
 meta.foundation-version {
@@ -9810,7 +9810,7 @@ meta.foundation-mq-topbar {
 /* Wrapped around .top-bar to contain to grid width */
 .contain-to-grid {
   width: 100%;
-  background: #184895;
+  background: white;
 }
 .contain-to-grid .top-bar {
   margin-bottom: 0;
@@ -9844,7 +9844,7 @@ meta.foundation-mq-topbar {
   height: 55px;
   line-height: 55px;
   position: relative;
-  background: #184895;
+  background: white;
   margin-bottom: 0;
 }
 .top-bar ul {
@@ -9886,7 +9886,7 @@ meta.foundation-mq-topbar {
 }
 .top-bar .name h1 a {
   font-weight: normal;
-  color: white;
+  color: #262626;
   width: 75%;
   display: block;
   padding: 0 18.33333px;
@@ -9897,7 +9897,7 @@ meta.foundation-mq-topbar {
   top: 0;
 }
 .top-bar .toggle-topbar a {
-  color: white;
+  color: #262626;
   text-transform: uppercase;
   font-size: 0.8125rem;
   font-weight: bold;
@@ -9939,7 +9939,7 @@ meta.foundation-mq-topbar {
   background: transparent;
 }
 .top-bar.expanded .title-area {
-  background: #184895;
+  background: white;
 }
 .top-bar.expanded .toggle-topbar a {
   color: #888888;
@@ -9970,12 +9970,12 @@ meta.foundation-mq-topbar {
   width: 100%;
 }
 .top-bar-section ul li {
-  background: #113369;
+  background: #262626;
 }
 .top-bar-section ul li > a {
   display: block;
   width: 100%;
-  color: white;
+  color: #262626;
   padding: 12px 0 12px 0;
   padding-left: 18.33333px;
   font-family: "Roboto Condensed", "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -10078,7 +10078,7 @@ meta.foundation-mq-topbar {
   color: white;
 }
 .top-bar-section ul li:hover:not(.has-form) > a {
-  background: #113369;
+  background: black;
   color: white;
 }
 .top-bar-section ul li.active > a {
@@ -10101,7 +10101,7 @@ meta.foundation-mq-topbar {
   width: 0;
   height: 0;
   border: inset 5px;
-  border-color: transparent transparent transparent rgba(255, 255, 255, 0.4);
+  border-color: transparent transparent transparent rgba(38, 38, 38, 0.4);
   border-left-style: solid;
   margin-right: 18.33333px;
   margin-top: -4.5px;
@@ -10154,7 +10154,7 @@ meta.foundation-mq-topbar {
   margin-top: 0;
 }
 .top-bar-section .dropdown li.title h5 a {
-  color: white;
+  color: #262626;
   line-height: 27.5px;
   display: block;
 }
@@ -10179,7 +10179,7 @@ meta.foundation-mq-topbar {
 
 @media only screen and (min-width: 40.063em) {
   .top-bar {
-    background: #184895;
+    background: white;
     overflow: visible;
   }
   .top-bar:before, .top-bar:after {
@@ -10206,7 +10206,7 @@ meta.foundation-mq-topbar {
     top: 7px;
   }
   .top-bar.expanded {
-    background: #184895;
+    background: white;
   }
 
   .contain-to-grid .top-bar {
@@ -10231,16 +10231,16 @@ meta.foundation-mq-topbar {
     display: none;
   }
   .top-bar-section li.hover > a:not(.button) {
-    background: #113369;
+    background: black;
     color: white;
   }
   .top-bar-section li:not(.has-form) a:not(.button) {
     padding: 0 18.33333px;
     line-height: 55px;
-    background: #184895;
+    background: white;
   }
   .top-bar-section li:not(.has-form) a:not(.button):hover {
-    background: #113369;
+    background: black;
   }
   .top-bar-section li.active:not(.has-form) a:not(.button) {
     padding: 0 18.33333px;
@@ -10260,7 +10260,7 @@ meta.foundation-mq-topbar {
     width: 0;
     height: 0;
     border: inset 5px;
-    border-color: rgba(255, 255, 255, 0.4) transparent transparent transparent;
+    border-color: rgba(38, 38, 38, 0.4) transparent transparent transparent;
     border-top-style: solid;
     margin-top: -2.5px;
     top: 27.5px;
@@ -10304,15 +10304,15 @@ meta.foundation-mq-topbar {
     line-height: 55px;
     white-space: nowrap;
     padding: 12px 18.33333px;
-    background: #113369;
+    background: #262626;
   }
   .top-bar-section .dropdown li:not(.has-form) a:not(.button) {
     color: white;
-    background: #113369;
+    background: #262626;
   }
   .top-bar-section .dropdown li:not(.has-form):hover > a:not(.button) {
     color: white;
-    background: #113369;
+    background: black;
   }
   .top-bar-section .dropdown li label {
     white-space: nowrap;
@@ -10331,7 +10331,7 @@ meta.foundation-mq-topbar {
     width: 0;
   }
   .top-bar-section .has-form {
-    background: #184895;
+    background: white;
     padding: 0 18.33333px;
     height: 55px;
   }
@@ -10351,7 +10351,7 @@ meta.foundation-mq-topbar {
   }
 
   .no-js .top-bar-section ul li:hover > a {
-    background: #113369;
+    background: black;
     color: white;
   }
   .no-js .top-bar-section ul li:active > a {
@@ -11097,7 +11097,7 @@ th.hide-for-touch {
   padding-bottom: 4px;
 }
 .title-area a {
-  color: white;
+  color: #262626;
   font-size: 1.3em;
   display: inline-block;
   padding-top: 0.3em;
@@ -11131,30 +11131,9 @@ img.full-width {
 }
 
 /* Footer Area */
-.wrapper {
-  min-height: 100%;
-}
-
-.main-wrapper {
-  overflow: auto;
-  padding-bottom: 330px;
-}
-
 footer {
-  height: 330px;
-  position: relative;
-  margin-top: -330px;
-  clear: both;
-}
-@media screen and (max-width: 640px) {
-  footer {
-    height: auto;
-  }
-}
-
-footer {
-  background: #184895;
-  color: #e6e6fc;
+  background: white;
+  color: #262626;
 }
 footer .footer-details {
   font-family: "Roboto Condensed", "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -11164,11 +11143,13 @@ footer .footer-details {
   top: 2px;
 }
 footer a {
-  color: white;
+  color: #262626;
 }
 footer h4 {
   text-transform: uppercase;
-  color: #cedef7;
+}
+footer h4, footer h4 a {
+  color: #262626;
 }
 footer img {
   max-height: 37px;
@@ -11195,7 +11176,7 @@ footer img {
   margin-top: 1em;
 }
 .archive-header h1 {
-  color: #113369;
+  color: black;
 }
 
 /* Google Map Shortcode */
@@ -11219,7 +11200,7 @@ footer img {
 #imagelightbox-caption {
   text-align: center;
   color: white;
-  background-color: #113369;
+  background-color: black;
   position: fixed;
   z-index: 10001;
   font-family: "Roboto Condensed", "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;

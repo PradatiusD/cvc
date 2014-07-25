@@ -13,8 +13,9 @@
  * Use it to make something cool, have fun, and share what you've learned with others.
  *  */
 
-$blue: #184895
-$darkBlue: darken($blue, 10%)
+$dark: lighten(black, 15%)
+$black: black
+$white: white
 
 @import url("http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400|Roboto:400,700,400italic,700italic,300")
 @import "bower_components/foundation/scss/normalize"
@@ -35,14 +36,15 @@ h1, h2, h3, h4, h5, h6
 		font-weight: 300
 
 // Navigation/Header
-
-$topbar-bg: $blue
 $topbar-height: 55px
+$topbar-bg: $white
+$topbar-link-color: $dark
+$topbar-dropdown-toggle-color: $dark
 $topbar-link-font-family: $cvcHeaderFont
 $topbar-link-font-size: 1.1em
-$topbar-dropdown-bg: $darkBlue
-$topbar-dropdown-link-bg: $darkBlue
-$topbar-link-bg-hover: $darkBlue
+$topbar-dropdown-bg: $dark
+$topbar-dropdown-link-bg: $dark
+$topbar-link-bg-hover: $black
 
 .top-bar a
 	font-family: $cvcHeaderFont
@@ -50,7 +52,7 @@ $topbar-link-bg-hover: $darkBlue
 	+transition(background 0.15s ease-in-out)
 
 header
-	background: $blue
+	background: $white
 
 // Buttons
 $button-font-family: $cvcHeaderFont
@@ -63,7 +65,7 @@ $button-font-family: $cvcHeaderFont
 		max-height: 45px
 		padding-bottom: 4px
 	a
-		color: white
+		color: $dark
 		font-size: 1.3em
 		display: inline-block
 		padding-top: 0.3em
@@ -89,31 +91,10 @@ img
 		width: 100%
 
 /* Footer Area */
-$footerHeight: 330px
-
-// For sticky footer
-.wrapper
-	min-height: 100%
-
-.main-wrapper
-	overflow: auto
-	padding-bottom: $footerHeight
 
 footer
-	height: $footerHeight
-	+max-screen(640px)
-		height: auto
-
-	position: relative
-	margin-top: -$footerHeight
-	clear: both
-
-
-// Regular footer styling
-
-footer
-	background: $blue
-	color: #E6E6FC
+	background: $white
+	color: $dark
 
 	.footer-details
 		font-family: $cvcHeaderFont
@@ -123,11 +104,12 @@ footer
 		top: 2px
 
 	a
-		color: lighten($blue, 75%)
+		color: $dark
 
 	h4
 		text-transform: uppercase
-		color: lighten($blue, 55%)
+		&, a
+			color: $dark
 
 	img
 		max-height: 37px
@@ -151,7 +133,7 @@ footer
 .archive-header
 	margin-top: 1em
 	h1
-		color: $darkBlue
+		color: $black
 
 
 /* Google Map Shortcode */
@@ -177,7 +159,7 @@ footer
 #imagelightbox-caption
 	text-align: center
 	color: #fff
-	background-color: $darkBlue
+	background-color: $black
 	position: fixed
 	z-index: 10001
 	font-family: $cvcHeaderFont

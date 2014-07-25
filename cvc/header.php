@@ -20,7 +20,7 @@
 								<ul class="title-area">
 									<li class="name">
 										<a href="<?php echo home_url(); ?>">
-											<img src="<?php echo get_stylesheet_directory_uri() ?>/img/cvc-logo.png"/>
+											<img src="<?php echo get_stylesheet_directory_uri() ?>/img/cvc-logo-black.png"/>
 											<span><?php bloginfo('name'); ?></span>
 										</a>
 									</li>

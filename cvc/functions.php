@@ -185,23 +185,26 @@
 		?>
 		<section class="gallery">
 
-			<?php foreach ( $images as $image ):     
+			<?php foreach ($images as $image):     
 
-					$caption = $image->post_excerpt;					
+					$caption     = $image->post_excerpt;					
 					$description = $image->post_content;
 					if($description == '') $description = $image->post_title;
 					$image_alt = get_post_meta($image->ID,'_wp_attachment_image_alt', true);
+					$big_image_src   = wp_get_attachment_image_src($image->ID, 'full');
+					$big_image_src   = $big_image_src[0];
+					$small_image_src = wp_get_attachment_image_src($image->ID, 'medium');
+					$small_image_src = $small_image_src[0];
 				?>
-				<a href="<?php echo wp_get_attachment_image_src($image->ID, 'full')[0];?>" class="lightbox">
-					
-					<img class="th" src="<?php echo wp_get_attachment_image_src( $image->ID, 'thumbnail')[0];?>" alt="<?php echo $description;?>">
+				<a href="<?php echo $big_image_src;?>" class="lightbox">
+					<img class="th" src="<?php echo $small_image_src;?>" alt="<?php echo $description;?>">
 				</a>
 			<?php endforeach; ?>
 		</section>
 
 		<?php
 		$content = ob_get_clean();
-		echo $content;
+		return $content;
 	}
 
 	function cvc_display_map( $atts ){

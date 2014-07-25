@@ -1,6 +1,11 @@
 				<?php wp_footer();?>
 			</div>
 		</div>
+		<?php if (!is_front_page()):?>
+			<div class="row">
+				<hr>
+			</div>
+		<?php endif; ?>
 		<footer>
 			<div class="row">
 				<?php dynamic_sidebar('footer1'); ?>
@@ -9,13 +14,16 @@
 				<?php dynamic_sidebar('footer4'); ?> 
 			</div>
 			<div class="row">
+				<hr>
+			</div>
+			<div class="row">
 				<p class="text-center">
 					<a href="<?php echo home_url();?>" class="footer-details">
-						<img src="<?php echo get_stylesheet_directory_uri() ?>/img/cvc-logo.png"/>
+						<img src="<?php echo get_stylesheet_directory_uri() ?>/img/cvc-logo-black.png"/>
 						<span><?php bloginfo('name');?></span>
 					</a><br>
 					
-					541 NW 27th St Miami, FL 33127 · 305-571-1415<br>
+					541 NW 27th St Miami, FL 33127 · <a href="tel:3055711415">305-571-1415</a><br>
 					<small>Copyright © 2014 Center for Visual Communication, Inc.</small>
 				</p>
 			</div>
@@ -55,6 +63,13 @@
 					onLoadEnd:	 function() { captionOn(); activityIndicatorOff(); },
 					onEnd:		 function() { captionOff(); activityIndicatorOff(); }				
 				});
+
+			})();
+
+			(function imageLightBox(){
+
+				var $ccWidgetButton = $('.constantcontactwidget_form').find('input[type="submit"]');
+				$ccWidgetButton.addClass('button secondary');
 
 			})();
 
