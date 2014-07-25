@@ -1,11 +1,9 @@
 				<?php wp_footer();?>
 			</div>
 		</div>
-		<?php if (!is_front_page()):?>
-			<div class="row">
-				<hr>
-			</div>
-		<?php endif; ?>
+		<div class="row">
+			<hr>
+		</div>
 		<footer>
 			<div class="row">
 				<?php dynamic_sidebar('footer1'); ?>
