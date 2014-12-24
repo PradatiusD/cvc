@@ -30,3 +30,26 @@ Miami FL 33127<br>
 ## Helpful links for Dev
 
 * [Types PHP API](http://wp-types.com/documentation/user-guides/displaying-wordpress-custom-fields/)
+
+
+
+# Features to be added
+- Current and Past Exhibitions taxonomy added
+- Add plugin for css
+- News section
+
+# Topic of conversation
+instagram
+http://note.io/1zOexA2
+
+
+# Sass conflict issue
+
+See [this compilation issue](http://foundation.zurb.com/forum/posts/18856-sass-342-compilation-problem)
+
+See 
+
+```bash
+gem uninstall sass
+gem install sass -v 3.2.19
+```

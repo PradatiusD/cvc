@@ -259,3 +259,44 @@
 		return $content;
 	}
 	add_shortcode( 'cvc_map', 'cvc_display_map' );
+
+	function top_five_images () {
+		ob_start();
+		?>
+		<?php if (is_front_page()): ?>
+
+			<style>
+				.vc_spanFifths {
+					width: 18% !important;
+					float: left !important;
+				}
+
+				.vc_spanFifths .wpb_single_image {
+					margin-bottom: 0;
+				}
+
+				@media screen and (max-width: 480px) {
+					.vc_spanFifths {
+						margin-left: 2% !important;
+					}					
+					.vc_spanFifths p {
+						font-size: 0.8em;
+					}					
+
+				}
+			</style>
+
+			<script>
+				(function($){
+					var $firstRow = jQuery('.wpb_row').eq(0);
+					$firstRow.find('.vc_span1').remove()
+					$firstRow.find('.vc_span2').addClass('vc_spanFifths');
+				})(jQuery);
+			</script>
+
+		<?php endif; ?>
+		<?php
+		echo ob_get_clean();
+	}
+
+	add_action('wp_footer','top_five_images');
