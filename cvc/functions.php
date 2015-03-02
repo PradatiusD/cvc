@@ -1,5 +1,10 @@
 <?php
 
+	function check_errors () {
+		error_reporting(E_ALL);
+		ini_set('display_errors', 1);	
+	}
+
 	class Foundation_Navigation_Walker extends Walker_Nav_Menu {
 
 		// add classes to ul sub-menus
@@ -269,6 +274,7 @@
 				.vc_spanFifths {
 					width: 18% !important;
 					float: left !important;
+					text-align: center !important;
 				}
 
 				.vc_spanFifths .wpb_single_image {
