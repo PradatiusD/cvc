@@ -11668,8 +11668,8 @@ th.hide-for-touch {
 
 /* Header Area */
 .title-area img {
-  max-height: 53px;
-  padding-bottom: 4px;
+  height: 40px;
+  margin-top: 3px;
 }
 .title-area a {
   color: #262626;
