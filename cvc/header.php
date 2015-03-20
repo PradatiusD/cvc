@@ -3,11 +3,8 @@
 	<head>
 		<title><?php echo get_bloginfo(); ?></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>">
 		<meta name="description" content="<?php echo bloginfo('description');?>">
-		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 		<link rel="icon" href="<?php bloginfo('template_url'); ?>/favicon.ico" type="image/x-icon" />
-		<?php wp_enqueue_script("jquery"); ?>
 		<?php wp_head(); ?>
 	</head>
 	<body <?php body_class(); ?>>
@@ -19,9 +16,8 @@
 							<nav class="top-bar" data-topbar>
 								<ul class="title-area">
 									<li class="name">
-										<a href="<?php echo home_url(); ?>">
+										<a href="<?php echo home_url(); ?>" title="<?php bloginfo('name'); ?>">
 											<img src="<?php echo get_stylesheet_directory_uri() ?>/img/cvc-logo-black.png"/>
-											<span><?php bloginfo('name'); ?></span>
 										</a>
 									</li>
 									<li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>

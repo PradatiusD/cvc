@@ -1,7 +1,6 @@
-<?php get_header();
+<?php get_header();?>
 
-$row_counter = 0;
-?>
+<?php $row_counter = 0;?>
 
   <main class="row">
     <div class="small-12 columns">
@@ -18,7 +17,7 @@ $row_counter = 0;
 
           <!-- Image with the text below -->
 
-          <article class="small-12 medium-6 columns text-center">
+          <article  <?php post_class(array('small-12','medium-6','columns','text-center')); ?>>
             <a href="<?php the_permalink();?>">
               <?php 
                 if (has_post_thumbnail()) {

@@ -19,6 +19,8 @@ $white: white
 
 @import url("http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400|Roboto:400,700,400italic,700italic,300")
 @import "bower_components/foundation/scss/normalize"
+@import "bower_components/foundation/scss/foundation/functions"
+
 @import "bower_components/animate.scss/animate"
 @import "bower_components/bourbon/app/assets/stylesheets/bourbon"
 @import "bower_components/sass-mediaqueries/media-queries"
@@ -36,7 +38,7 @@ h1, h2, h3, h4, h5, h6
 		font-weight: 300
 
 // Navigation/Header
-$topbar-height: 55px
+$topbar-height: rem-calc(60)
 $topbar-bg: $white
 $topbar-link-color: $dark
 $topbar-dropdown-toggle-color: $dark
@@ -67,7 +69,7 @@ $button-font-family: $cvcHeaderFont
 /* Header Area */
 .title-area 
 	img
-		max-height: 45px
+		max-height: 53px
 		padding-bottom: 4px
 	a
 		color: $dark
@@ -177,3 +179,7 @@ footer
 
 #imagelightbox
 	cursor: pointer
+
+
+.archive .hentry img
+	width: 100%

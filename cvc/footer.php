@@ -16,9 +16,8 @@
 			</div>
 			<div class="row">
 				<p class="text-center">
-					<a href="<?php echo home_url();?>" class="footer-details">
+					<a href="<?php echo home_url();?>" title="<?php bloginfo('name');?>" class="footer-details">
 						<img src="<?php echo get_stylesheet_directory_uri() ?>/img/cvc-logo-black.png"/>
-						<span><?php bloginfo('name');?></span>
 					</a><br>
 					
 					541 NW 27th St Miami, FL 33127 · <a href="tel:3055711415">305-571-1415</a><br>
