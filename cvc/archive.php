@@ -1,11 +1,20 @@
 <?php get_header();?>
 
 <?php
+
   $row_counter = 0;
-  $archive_posts = array();
 
   function archive_content($post) {
+    global $row_counter;
+
     ob_start();?>
+
+       <!-- Add opening section row tag if is even -->
+      
+      <?php if ($row_counter % 2 == 0): ?>
+        <section class="row">
+      <?php endif; ?>
+
       <article  <?php post_class(array('small-12','medium-6','columns','text-center')); ?>>
         <a href="<?php the_permalink();?>">
           <?php 
@@ -25,6 +34,15 @@
           <?php if (has_excerpt()) {the_excerpt();};?> 
         </p>
       </article>
+
+      <!-- Close row if it is odd -->
+      <?php 
+        if ($row_counter % 2 != 0) {
+          echo "</section>";
+        } else {
+          $row_counter++;
+        }
+      ?>
   <?php
     echo ob_get_clean();
   };
@@ -62,6 +80,7 @@
       <h2>Past <?php post_type_archive_title();?></h2>
       <?php
          wp_reset_query();
+         $row_counter = 0;
 
         if ( have_posts() ) {
           while ( have_posts() ) {
