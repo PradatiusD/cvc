@@ -15,7 +15,8 @@
   }
 
   // 470x314 size for archive pages
-  add_image_size('archive-image', '470', '314', false); 
+  add_image_size('archive-image', '470', '314', false); //uncropped
+  add_image_size('archive-image-cropped', '470','314', true); //cropped
 
   add_action('wp_enqueue_scripts','header_scripts');
 
