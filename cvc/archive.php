@@ -48,28 +48,34 @@
   };
 
   function is_past_post($post) {
-    $terms = wp_get_post_terms( $post->ID, 'post-state');
-    $is_past = false;
-
-    foreach ($terms as $term) {
-      if ($term->slug == 'past') {
-        $is_past = true;
-        break;
-      }
-    }
+    $is_past = has_term( 'past', 'post-state');
     return $is_past;
   }
+
+  function has_post_state_taxonomy () {
+    $archive_name = get_queried_object();
+    $archive_name = $archive_name->rewrite['slug'];
+
+    if ($archive_name == 'exhibition' || $archive_name == 'event' || $archive_name == 'program') {
+      return true;
+    }
+  }
+
 ?>
 
   <main class="row">
     <div class="small-12 columns">
       <?php the_breadcrumb(); ?>
 
-      <h2>Current <?php post_type_archive_title();?></h2>
+      <?php if (has_post_state_taxonomy()): ?>
+        <h2>Current <?php post_type_archive_title();?></h2>      
+      <?php endif; ?>
+
       <?php 
         if ( have_posts() ) {
           while ( have_posts() ) {
             the_post(); 
+
             if (!is_past_post($post)) {
               archive_content($post);              
             }
@@ -77,21 +83,25 @@
         }
       ?>
 
-      <h2>Past <?php post_type_archive_title();?></h2>
-      <?php
-         wp_reset_query();
-         $row_counter = 0;
+      <?php if (has_post_state_taxonomy()): ?>
+        <h2>Past <?php post_type_archive_title();?></h2>      
+ 
+        <?php
+           wp_reset_query();
+           $row_counter = 0;
 
-        if ( have_posts() ) {
-          while ( have_posts() ) {
-            the_post(); 
-            if (is_past_post($post)) {
-              archive_content($post);              
+          if ( have_posts() ) {
+            while ( have_posts() ) {
+              the_post(); 
+              if (is_past_post($post)) {
+                archive_content($post);              
+              }
+
             }
-
           }
-        }
-      ?>      
+        ?>      
+ 
+     <?php endif; ?>
     </div>
   </main>
 <?php get_footer();?>
