@@ -14,6 +14,9 @@
     wp_enqueue_script('jquery');
   }
 
+  // 470x314 size for archive pages
+  add_image_size('archive-image', '470', '314', false); 
+
   add_action('wp_enqueue_scripts','header_scripts');
 
   function register_header_menu() {

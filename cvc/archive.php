@@ -15,11 +15,11 @@
         <section class="row">
       <?php endif; ?>
 
-      <article  <?php post_class(array('small-12','medium-6','columns','text-center')); ?>>
+      <article  <?php post_class(array('small-12','medium-6','columns','text-left')); ?>>
         <a href="<?php the_permalink();?>">
           <?php 
             if (has_post_thumbnail()) {
-                the_post_thumbnail('full');
+                the_post_thumbnail('archive-image');
             } else {
               echo "<img src='http://placehold.it/300x200&text=Image+Coming+Soon'/>";
             }
@@ -84,7 +84,7 @@
       ?>
 
       <?php if (has_post_state_taxonomy()): ?>
-        <h2>Past <?php post_type_archive_title();?></h2>      
+        <h2>Past <?php post_type_archive_title();?></h2>
  
         <?php
            wp_reset_query();
