@@ -25,6 +25,7 @@ module.exports = (grunt) ->
 				src: 'cvc'
 				dest: 'wp-content/themes/cvc'
 				exclusions: ftpExclusions
+				forceVerbose: true
 			cvc:
 				auth:
 					host: '66.96.161.206'

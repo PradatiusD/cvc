@@ -21,7 +21,7 @@ function the_breadcrumb() {
       }
     } else if(is_post_type_archive()){
 
-      $crumb .= '<li class="current">'. get_post_type() .'</li>';
+      $crumb .= '<li class="current">'. get_post_type() .'s</li>';
 
     } elseif (is_page()) {
 
