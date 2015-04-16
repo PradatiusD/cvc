@@ -9,7 +9,7 @@
 
           the_breadcrumb(); 
 
-          $subheader = types_render_field("subtitle");
+          $subheader = types_render_field("subtitle", array());
 
           if (strlen($subheader)>0) {
             echo "<small class='subheader'>".$subheader."</small>";

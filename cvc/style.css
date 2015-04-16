@@ -11792,7 +11792,8 @@ footer img {
 }
 
 .archive .hentry img {
-  width: 100%;
+  max-height: 373px;
+  width: auto;
 }
 
 /*# sourceMappingURL=style.css.map */

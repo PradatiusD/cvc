@@ -49,6 +49,8 @@ module.exports = (grunt) ->
 					'cvc/style.css': 'style.sass'
 
 		watch:
+			options:
+				livereload: true
 			theme:
 				files: 'cvc/*.php'
 				tasks: ['copy']

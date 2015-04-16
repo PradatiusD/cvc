@@ -29,7 +29,7 @@
         <a href="<?php the_permalink();?>">
           <?php 
             if (has_post_thumbnail()) {
-                the_post_thumbnail('archive-image-cropped');
+                the_post_thumbnail('full');
             } else {
               echo "<img src='http://placehold.it/300x200&text=Image+Coming+Soon'/>";
             }
@@ -63,14 +63,44 @@
     }
   }
 
+  /*
+   * Has Post With Specified State
+   * --------------------------------
+   * This function loops through the wp_query object
+   * and determines if this array of posts has at least
+   * one of the state (such as current/past/upcoming)
+   * 
+   */
+
+  function has_post_with_state($state) {
+    global $wp_query;
+
+    $posts = $wp_query->posts;
+
+    $posts_with_state = 0;
+
+    for ($i=0; $i < count($posts) - 1; $i++) {
+      $post = $posts[$i];
+      $post_terms = wp_get_post_terms($post->ID, 'post-state');
+
+      if (sizeOf($post_terms) > 0) {
+        if ($post_terms[0]->slug == $state) {
+          $posts_with_state++;
+        }
+      }
+    }
+
+    return ($posts_with_state > 0);
+  }
+
 ?>
 
   <main class="row">
     <div class="small-12 columns">
       <?php the_breadcrumb(); ?>
 
-      <?php if (has_post_state_taxonomy()): ?>
-        <h2>Current <?php post_type_archive_title();?></h2>      
+      <?php if (has_post_state_taxonomy() && has_post_with_state('current')) :?>
+        <h2>Upcoming <?php post_type_archive_title();?></h2>      
       <?php endif; ?>
 
       <?php 
@@ -86,7 +116,7 @@
         }
       ?>
 
-      <?php if (has_post_state_taxonomy()): ?>
+      <?php if (has_post_state_taxonomy() &&  has_post_with_state('past')): ?>
 
         <?php section_wrapper(false);?>
 
