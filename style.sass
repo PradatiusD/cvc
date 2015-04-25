@@ -184,3 +184,37 @@ footer
 .archive .hentry img
 	max-height: 373px
 	width: auto
+
+
+/* Special classes for homepage */
+.hide
+	display: none !important
+
+.no_left_margin
+	margin-left: 0 !important
+
+
+.home
+
+	.wpb_content_element.aligncenter
+		img 
+			@extend .aligncenter
+	
+	.img_full_width
+		width: 100%
+
+
+	.vc_spanFifths
+		width: 18% !important
+		float: left !important
+		text-align: center !important
+
+		.wpb_single_image
+			margin-bottom: 0
+
+		+max-screen(480px)
+			.vc_spanFifths
+				margin: 2%
+
+				p
+					font-size: 0.8em

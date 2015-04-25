@@ -11697,7 +11697,7 @@ th.hide-for-touch {
 }
 
 /* Wordpress Utility Classes */
-img.aligncenter {
+img.aligncenter, .home .wpb_content_element.aligncenter img {
   margin: 0 auto;
   display: block;
 }
@@ -11794,6 +11794,35 @@ footer img {
 .archive .hentry img {
   max-height: 373px;
   width: auto;
+}
+
+/* Special classes for homepage */
+.hide {
+  display: none !important;
+}
+
+.no_left_margin {
+  margin-left: 0 !important;
+}
+
+.home .img_full_width {
+  width: 100%;
+}
+.home .vc_spanFifths {
+  width: 18% !important;
+  float: left !important;
+  text-align: center !important;
+}
+.home .vc_spanFifths .wpb_single_image {
+  margin-bottom: 0;
+}
+@media screen and (max-width: 480px) {
+  .home .vc_spanFifths .vc_spanFifths {
+    margin: 2%;
+  }
+  .home .vc_spanFifths .vc_spanFifths p {
+    font-size: 0.8em;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

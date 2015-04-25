@@ -11,9 +11,10 @@ function the_breadcrumb() {
     $crumb .= '<li><a href="'. home_url(). '">Home</a>';
 
     if (is_category() || is_single()) {
+      $post_type = get_post_type();
 
       $crumb .= '<li>';
-      $crumb .= '<a href="'.get_post_type_archive_link(). '">' . get_post_type(). "</a>";
+      $crumb .= '<a href="'.get_post_type_archive_link($post_type). '">'.$post_type."</a>";
 
       if (is_single()) {
         $crumb .= '</li>';
