@@ -100,7 +100,7 @@
       <?php the_breadcrumb(); ?>
 
       <?php if (has_post_state_taxonomy() && has_post_with_state('current')) :?>
-        <h2>Upcoming <?php post_type_archive_title();?></h2>      
+        <h2>Current <?php post_type_archive_title();?></h2>      
       <?php endif; ?>
 
       <?php 

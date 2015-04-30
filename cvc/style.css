@@ -11792,8 +11792,14 @@ footer img {
 }
 
 .archive .hentry img {
-  max-height: 373px;
+  height: 313px;
   width: auto;
+}
+@media screen and (max-width: 993px) {
+  .archive .hentry img {
+    height: inherit;
+    max-height: 373px;
+  }
 }
 
 /* Special classes for homepage */
@@ -11805,6 +11811,14 @@ footer img {
   margin-left: 0 !important;
 }
 
+.home .homepage-top-5 img {
+  width: 100px;
+  height: auto;
+}
+.home .wpb_row p {
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
 .home .img_full_width {
   width: 100%;
 }

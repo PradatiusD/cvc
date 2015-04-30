@@ -182,7 +182,10 @@ footer
 
 
 .archive .hentry img
-	max-height: 373px
+	height: 313px
+	+max-screen(993px)
+		height: inherit
+		max-height: 373px
 	width: auto
 
 
@@ -195,6 +198,14 @@ footer
 
 
 .home
+
+	.homepage-top-5 img
+		width: 100px
+		height: auto
+
+	.wpb_row p
+		font-size: 0.85rem
+		line-height: 1.4
 
 	.wpb_content_element.aligncenter
 		img 

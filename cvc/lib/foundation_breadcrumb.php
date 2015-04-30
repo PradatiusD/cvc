@@ -1,9 +1,20 @@
 <?php
 
+function reformat_archive_title($string) {
+
+  if ($string == 'press-release') {
+    return 'press releases';
+  }
+
+  return preg_replace("/s\b/", "", $string) . 's';
+}
+
 function the_breadcrumb() {
 
   global $post;
   $cat = get_the_category();
+  $post_type = get_post_type();
+
   $crumb = '';
 
   if (!is_home() && !is_front_page()) {
@@ -11,7 +22,6 @@ function the_breadcrumb() {
     $crumb .= '<li><a href="'. home_url(). '">Home</a>';
 
     if (is_category() || is_single()) {
-      $post_type = get_post_type();
 
       $crumb .= '<li>';
       $crumb .= '<a href="'.get_post_type_archive_link($post_type). '">'.$post_type."</a>";
@@ -22,7 +32,7 @@ function the_breadcrumb() {
       }
     } else if(is_post_type_archive()){
 
-      $crumb .= '<li class="current">'. get_post_type() .'s</li>';
+      $crumb .= '<li class="current">'. reformat_archive_title($post_type) . '</li>';
 
     } elseif (is_page()) {
 
