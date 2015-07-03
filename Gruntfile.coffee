@@ -53,7 +53,7 @@ module.exports = (grunt) ->
 			options:
 				livereload: true
 			theme:
-				files: 'cvc/*.php'
+				files: ['cvc/*.php','cvc/lib/*.php','cvc/js/*.js']
 				tasks: ['copy']
 			sassy:
 				files: 'style.sass'
