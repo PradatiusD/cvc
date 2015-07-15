@@ -1,5 +1,5 @@
 ftpExclusions = [
-	'cvc/lib/*'
+	# 'cvc/lib/*'
 	'cvc/img/*'
 	'.DS_Store'
 	'favicon.ico'

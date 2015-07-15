@@ -44,20 +44,54 @@ class CVC_Sub_Nav {
   }
 
   /*
+   * Grab Image From Attachment ID
+   * ------------------------
    * 
+   */
+
+  function create_image_from_attachment_id ($attachment_id) {
+
+    $image         = wp_get_attachment_image_src( $attachment_id, 'full');
+    $standard_meta = wp_get_attachment_metadata(  $attachment_id);
+    $cvc_metadata  = get_post_custom($attachment_id);
+
+    if (isset($image[0])) {
+      return '<img src="'.$image[0].'" data-attachment-id="'.$attachment_id.'" data-meta=\''.json_encode($cvc_metadata).'\'/>';
+    } else {
+      return '';
+    }
+  }
+
+  /*
+   * Create Gallery
+   * ------------------------
+   * Regex that turns a shortcode back into a comma separated list
+   * of attachment IDs, which are used to generate all the images seen
+   * on a particular page.
    */
 
   function create_gallery ($post_body) {
 
     $pattern = '/\[vc_gallery .* images="(.*?)" .*\]/';
-    $replacement = '<div class="cvc-gallery"><span class="hidden">$1</span></div><hr/>';
+    $replacement = '$1';
     $gallery_string = preg_replace($pattern, $replacement, $post_body);
-    return $gallery_string;
+
+    $gallery_string = explode(",", $gallery_string);
+
+    $images = '';
+
+    for ($i=0; $i < sizeOf($gallery_string); $i++) {
+      $attachment_id = $gallery_string[$i];
+      $images .= $this->create_image_from_attachment_id($attachment_id);
+    }
+
+    return '<section class="cvc-gallery">'.$images.'</section>';
   }
 
  
   /*
-   * Create a tab
+   * Create a Subnavigation Tab
+   * ----------------
    */
 
   function create_tab($posts_array) {
@@ -100,8 +134,14 @@ class CVC_Sub_Nav {
 
           <?php
           echo get_the_post_thumbnail( $post->ID, 'full');
-          $with_gallery = $this->create_gallery($post->post_content);
-          echo apply_filters('the_content', $with_gallery);
+
+          // Return the content without vc_galleries
+          $content_without_gallery = preg_replace('/\[vc_gallery .* images=".*?" .*\]/','', $post->post_content);
+          echo apply_filters('the_content', $content_without_gallery);
+
+          // Return the custom gallery
+          $gallery = $this->create_gallery($post->post_content);
+          echo $gallery;
 
         endforeach;
       ?>
