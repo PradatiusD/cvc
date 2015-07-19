@@ -85,7 +85,7 @@ class CVC_Sub_Nav {
       $images .= $this->create_image_from_attachment_id($attachment_id);
     }
 
-    return '<section class="cvc-gallery">'.$images.'</section>';
+    return '<section class="cvc-gallery"><div class="images-wrap"><aside class="images">'.$images.'</aside></div></section>';
   }
 
  

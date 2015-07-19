@@ -11893,6 +11893,12 @@ footer img {
 .cvc-gallery {
   text-align: left;
 }
+.cvc-gallery .featured img {
+  max-height: none;
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+}
 .cvc-gallery span {
   display: block;
 }
@@ -11904,6 +11910,17 @@ footer img {
 .cvc-gallery img {
   max-height: 166px;
   padding: 0.25em;
+}
+.cvc-gallery .images-wrap {
+  overflow-x: hidden;
+  height: 166px;
+  position: relative;
+}
+.cvc-gallery .images-wrap .images {
+  position: absolute;
+  width: 10000px;
+  top: 0;
+  left: 0;
 }
 
 /*# sourceMappingURL=style.css.map */
