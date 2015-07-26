@@ -229,18 +229,37 @@ footer
 				p
 					font-size: 0.8em
 
+
+/*
+ * CVC Gallery
+ */
+
 .cvc-gallery
 	@extend .row
 
 	text-align: left
 
 	.featured
+		position: relative
+
 		img
 			max-height: none
-			max-width: 100%
+			max-width: 92%
 			display: block
 			margin: 0 auto
 
+		.fa
+			position: absolute
+			font-size: 4em
+			color: #BBB
+			z-index: 10000
+			top: 0
+			
+			&.fa-angle-left
+				left: 23px
+
+			&.fa-angle-right
+				right: 23px
 	span
 		display: block
 
@@ -263,3 +282,6 @@ footer
 			width: 10000px
 			top: 0
 			left: 0
+
+			img.active
+				border: 1px solid rgba(128, 128, 128, 0.51)
