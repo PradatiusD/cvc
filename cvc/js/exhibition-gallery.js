@@ -91,10 +91,14 @@
 
         $descriptions.html(descriptions);
 
-        var newImgHeight = $figure.find('img').height() + 'px';
 
         $parent.imgIndex = imgIndex;
-        $parent.$arrows.css('line-height',newImgHeight);
+
+        $figure.find('img').imagesLoaded(function () {
+
+          var newImgHeight = $figure.find('img').height() + 'px';
+          $parent.$arrows.css('line-height', newImgHeight);
+        });
 
       });
 
