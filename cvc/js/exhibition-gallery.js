@@ -1,19 +1,6 @@
 (function ($) {
   
-  var $galleries = $('.cvc-gallery');
-  var isLoggedIn = $('body').hasClass('logged-in');
-
-  function cvcGallery ($gallery) {
-
-    var featuredHTML = '<article class="featured row">' +
-                         '<figure></figure>' +
-                         '<a href="javascript:void(0);" class="fa fa-angle-left"></a>' +
-                         '<a href="javascript:void(0);" class="fa fa-angle-right"></a>' +
-                         '<figcaption class="small-12 columns text-center"></figcaption>' +
-                       '</article>';
-
-    // Featured HTML
-    $gallery.prepend(featuredHTML);
+  function CVCGallery ($gallery) {
 
     // Make associations
     this.$featured     = $gallery.find('article');
@@ -23,17 +10,19 @@
     this.$arrows       = this.$featured.find('.fa');
     this.$leftArrow    = this.$featured.find('.fa-angle-left');
     this.$rightArrow   = this.$featured.find('.fa-angle-right');
-    
+
     this.$gallery      = $gallery;
+
+    this.$scrollLeft   = this.$gallery.find('.scroll-left');
+    this.$scrollRight  = this.$gallery.find('.scroll-right');
 
     // Init with image index
     this.imgIndex = 0;
 
-
     return this;
   }
 
-  cvcGallery.prototype.setImageClickHandlers = function () {
+  CVCGallery.prototype.setImageClickHandlers = function () {
 
     var $parent       = this;
     var $gallery      = this.$gallery;
@@ -105,7 +94,7 @@
         var newImgHeight = $figure.find('img').height() + 'px';
 
         $parent.imgIndex = imgIndex;
-        $parent.$arrows.css({'line-height':newImgHeight});
+        $parent.$arrows.css('line-height',newImgHeight);
 
       });
 
@@ -116,7 +105,7 @@
   };
 
 
-  cvcGallery.prototype.setArrowClickHandlers = function () {
+  CVCGallery.prototype.setMainImageNavigationHandlers = function () {
 
     var $this = this;
 
@@ -143,16 +132,60 @@
     this.$rightArrow.click(returnArrowClickHandler('right'));
   };
 
-  cvcGallery.prototype.createGallery = function () {
-    this.setImageClickHandlers();
-    this.setArrowClickHandlers();
+
+  CVCGallery.prototype.setSecondaryImageNavigationHandlers = function () {
+
+    var $images = this.$gallery.find('.images');
+
+    $images.setXTransform = function (amount) {
+      var transform = 'translateX('+amount+'px)';
+
+      this.css('-webkit-transform', transform);  // Chrome, Opera 15+, Safari 3.1+ 
+      this.css('-ms-transform',     transform);  // Internet Exploer 9 
+      this.css('transform',         transform);  // Firefox 16+, IE 10+, Opera 
+    };
+
+    function moveSecondaryImagesOnClick (amount) {
+
+      return function () {
+
+        var transformMatrix  = $images.css('transform'); // such as "matrix(1, 0, 0, 1, -500, 0)"
+
+        if (transformMatrix === "none") {
+
+          $images.setXTransform(amount);
+
+        } else {
+          var getXTransformRegex = /([-]?\d{1,})/g;
+          
+          var currentXTransform  = transformMatrix.match(getXTransformRegex)[4];
+          var newXTransform      = parseInt(currentXTransform) + amount;
+
+          $images.setXTransform(newXTransform);
+        }
+      };
+    }
+
+    this.$scrollRight.click(moveSecondaryImagesOnClick(-500));
+    this.$scrollLeft.click(moveSecondaryImagesOnClick(500));
   };
 
+  CVCGallery.prototype.createGallery = function () {
+    this.setImageClickHandlers();
+    this.setMainImageNavigationHandlers();
+    this.setSecondaryImageNavigationHandlers();
+  };
+
+
+  // Main
+
+  var $galleries = $('.cvc-gallery');
+  var isLoggedIn = $('body').hasClass('logged-in');
 
   $galleries.each(function (index) {
 
     var $gallery = $(this);
-    var cvc = new cvcGallery($gallery);
+    var cvc = new CVCGallery($gallery);
     cvc.createGallery();
 
   });

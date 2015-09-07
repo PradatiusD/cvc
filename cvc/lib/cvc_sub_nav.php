@@ -85,7 +85,39 @@ class CVC_Sub_Nav {
       $images .= $this->create_image_from_attachment_id($attachment_id);
     }
 
-    return '<section class="cvc-gallery"><div class="images-wrap"><aside class="images">'.$images.'</aside></div></section>';
+    ob_start();
+    ?>
+      <!-- CVC Gallery Template -->
+      <section class="cvc-gallery">
+
+        <!-- Featured Row -->
+
+        <article class="featured row">
+          <figure></figure>
+          <a href="javascript:void(0);" class="fa fa-angle-left"></a>
+          <a href="javascript:void(0);" class="fa fa-angle-right"></a>
+          <figcaption class="small-12 columns text-center"></figcaption>
+        </article>
+
+        <!-- Image Gallery -->
+
+        <div class="gallery-wrap">
+          <a href="javascript:void(0)" class="scroll-left">
+            <i class="fa fa-chevron-left"></i>
+          </a>
+          <a href="javascript:void(0)" class="scroll-right">
+            <i class="fa fa-chevron-right"></i>
+          </a>
+          <div class="images-wrap">  
+            <aside class="images">{{$images}}</aside>
+          </div>
+        </div>
+      </section>
+    <?php
+    $template = ob_get_clean();
+
+    $template = preg_replace('/{{\$images}}/i', $images, $template);
+    return $template;
   }
 
  

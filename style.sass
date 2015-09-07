@@ -232,6 +232,8 @@ footer
 
 /*
  * CVC Gallery
+ * ----------------
+ * Gallery for exhibitions
  */
 
 .cvc-gallery
@@ -271,6 +273,22 @@ footer
 	img
 		max-height: 166px
 		padding: 0.25em
+		cursor: pointer
+
+	.gallery-wrap
+		position: relative
+
+	.scroll-left, .scroll-right
+		position: absolute
+		font-size: 3em
+		color: #BBB
+		line-height: 166px
+
+	.scroll-left
+		left: -37px
+
+	.scroll-right
+		right: -37px
 
 	.images-wrap
 		overflow-x: hidden
@@ -279,6 +297,7 @@ footer
 
 		.images
 			position: absolute
+			+transition(transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1))
 			width: 10000px
 			top: 0
 			left: 0
