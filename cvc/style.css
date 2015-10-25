@@ -3963,6 +3963,12 @@ header {
   background: white;
 }
 
+.header-social a {
+  color: #000;
+  font-size: 1.2em;
+  padding: 0 0.5em;
+}
+
 meta.foundation-version {
   font-family: "/5.5.1/";
 }
@@ -11862,6 +11868,9 @@ footer img {
   margin-left: 0 !important;
 }
 
+.home .wpb_text_column, .home .wpb_separator.wpb_content_element {
+  margin-bottom: 1em;
+}
 .home .homepage-top-5 img {
   width: 100px;
   height: auto;
@@ -11905,10 +11914,11 @@ footer img {
   max-width: 92%;
   display: block;
   margin: 0 auto;
+  cursor: pointer;
 }
 .cvc-gallery .featured .fa {
   position: absolute;
-  font-size: 4em;
+  font-size: 2.5em;
   color: #BBB;
   z-index: 10000;
   top: 0;

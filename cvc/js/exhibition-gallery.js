@@ -13,8 +13,8 @@
 
     this.$gallery      = $gallery;
 
-    this.$scrollLeft   = this.$gallery.find('.scroll-left');
-    this.$scrollRight  = this.$gallery.find('.scroll-right');
+    this.$scrollLeft   = this.$gallery.find('.gallery-wrap').find('.fa-angle-left');
+    this.$scrollRight  = this.$gallery.find('.gallery-wrap').find('.fa-angle-right');
 
     // Init with image index
     this.imgIndex = 0;
@@ -98,6 +98,11 @@
 
           var newImgHeight = $figure.find('img').height() + 'px';
           $parent.$arrows.css('line-height', newImgHeight);
+
+          // Open full page image
+          $figure.find('img').click(function () {
+            window.open($figure.find('img').attr('src'), "_blank");
+          });
         });
 
       });
@@ -175,6 +180,7 @@
   };
 
   CVCGallery.prototype.createGallery = function () {
+
     this.setImageClickHandlers();
     this.setMainImageNavigationHandlers();
     this.setSecondaryImageNavigationHandlers();

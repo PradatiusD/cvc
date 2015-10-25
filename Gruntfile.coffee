@@ -80,6 +80,5 @@ module.exports = (grunt) ->
 	grunt.loadNpmTasks('grunt-contrib-watch')
 	grunt.loadNpmTasks('grunt-contrib-uglify')
 	grunt.registerTask('default', ['watch'])
-	grunt.registerTask('deploy',  ['sass','ftp-deploy:dev'])
-	grunt.registerTask('push',    ['sass','ftp-deploy:cvc'])
+	grunt.registerTask('deploy',  ['ftp-deploy:dev'])
 	grunt.registerTask('js',      ['uglify','copy'])

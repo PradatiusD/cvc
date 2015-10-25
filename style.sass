@@ -57,6 +57,12 @@ $topbar-menu-icon-color: $black
 header
 	background: $white
 
+.header-social
+	a
+		color: #000
+		font-size: 1.2em
+		padding: 0 0.5em
+
 // Buttons
 $button-font-family: $cvcHeaderFont
 
@@ -198,6 +204,9 @@ footer
 
 .home
 
+	.wpb_text_column, .wpb_separator.wpb_content_element
+		margin-bottom: 1em
+
 	.homepage-top-5 img
 		width: 100px
 		height: auto
@@ -249,10 +258,11 @@ footer
 			max-width: 92%
 			display: block
 			margin: 0 auto
+			cursor: pointer
 
 		.fa
 			position: absolute
-			font-size: 4em
+			font-size: 2.5em
 			color: #BBB
 			z-index: 10000
 			top: 0

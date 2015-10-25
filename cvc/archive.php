@@ -1,145 +1,170 @@
-<?php get_header();?>
+<?php 
+get_header();
 
-<?php
+class CVC_Archive {
 
-  function section_wrapper ($is_opening_tag) {
-    global $row_counter;
+  public  $states = array();
+  private $row_counter = 0;
 
-    if ($is_opening_tag && $row_counter % 2 == 0) {
-      echo '<section class="row"> <!-- Add opening section row tag if is even. Now at '.$row_counter.' -->';   
-    }
-
-    if (!$is_opening_tag) {
-      if ($row_counter % 2 != 0) {
-        echo "</section>  <!-- Close row if it is odd. Now at ".$row_counter." -->";
-      }
-
-      $row_counter++;
-    }
-  }
-
-  function archive_content($post) {
-    global $row_counter;
-
-    ob_start();?>
-
-      <?php section_wrapper(true);?>
-
-      <article  <?php post_class(array('small-12','medium-6','columns','text-left')); ?>>
-        <a href="<?php the_permalink();?>">
-          <?php 
-            if (has_post_thumbnail()) {
-                the_post_thumbnail('full');
-            } else {
-              echo "<img src='http://placehold.it/300x200&text=Image+Coming+Soon'/>";
-            }
-          ?>
-        </a>
-
-        <h5>
-          <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a>
-        </h5>
-        <p>
-          <?php if (has_excerpt()) {the_excerpt();};?> 
-        </p>
-      </article>
-
-      <?php section_wrapper(false);?>
-  <?php
-    echo ob_get_clean();
-  };
-
-  function is_past_post($post) {
-    $is_past = has_term( 'past', 'post-state');
-    return $is_past;
-  }
-
-  function has_post_state_taxonomy () {
-    $archive_name = get_queried_object();
-    $archive_name = $archive_name->rewrite['slug'];
-
-    if ($archive_name == 'exhibition' || $archive_name == 'event' || $archive_name == 'program') {
-      return true;
-    }
-  }
 
   /*
-   * Has Post With Specified State
-   * --------------------------------
-   * This function loops through the wp_query object
-   * and determines if this array of posts has at least
-   * one of the state (such as current/past/upcoming)
-   * 
+   * Constructor 
+   * --------------------
    */
 
-  function has_post_with_state($state) {
-    global $wp_query;
+  function CVC_Archive ($wp_query) {
 
-    $posts = $wp_query->posts;
+    $this->wp_query       = $wp_query;
+    $this->archive_title  = post_type_archive_title('', false);
 
-    $posts_with_state = 0;
-
-    for ($i=0; $i < count($posts) - 1; $i++) {
-      $post = $posts[$i];
+    foreach ($wp_query->posts as $post) {
       $post_terms = wp_get_post_terms($post->ID, 'post-state');
 
       if (sizeOf($post_terms) > 0) {
-        if ($post_terms[0]->slug == $state) {
-          $posts_with_state++;
+
+        $first_term = $post_terms[0];
+
+        if ($first_term->slug) {
+          array_push($this->states, $first_term);
         }
       }
     }
-
-    return ($posts_with_state > 0);
   }
+
+
+  /*
+   * Has Time State
+   * --------------------
+   */
+
+  function has_time_state($target_slug) {
+
+    for ($i=0; $i < count($this->states); $i++) {
+      if ($this->states[$i]->slug == $target_slug) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  function has_current_and_past_posts() {
+
+    if ($this->has_time_state('past') && $this->has_time_state('current')) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+
+  function section_wrapper ($is_opening_tag) {
+
+    if ($is_opening_tag && $this->row_counter % 2 == 0) {
+      echo '<section class="row"> <!-- Add opening section row tag if is even. Now at '.$this->row_counter.' -->';   
+    }
+
+    if (!$is_opening_tag) {
+
+      if ($this->row_counter % 2 != 0) {
+        echo "</section>  <!-- Close row if it is odd. Now at ".$this->row_counter." -->";
+      }
+
+      $this->row_counter++;
+    }
+  }
+
+  function do_loop($target_post_state) {
+
+    if (have_posts()) {
+
+      if (isset($target_post_state)) {
+        echo "<h2>".$target_post_state." ".$this->archive_title."</h2>";
+      }
+
+      while (have_posts()) {
+        the_post();
+
+        if (isset($target_post_state)) {
+          $post_terms  = wp_get_post_terms(get_the_ID(), 'post-state');
+          $target_slug = strtolower($target_post_state);
+
+          if ($target_slug == $post_terms[0]->slug) {
+            continue;
+          }
+        }
+      ?>
+
+          <?php $this->section_wrapper(true);?>
+
+          <article  <?php post_class(array('small-12','medium-6','columns','text-left')); ?>>
+            <a href="<?php the_permalink();?>">
+              <?php 
+                if (has_post_thumbnail()) {
+                    the_post_thumbnail('full');
+                } else {
+                  echo "<img src='http://placehold.it/300x200&text=Image+Coming+Soon'/>";
+                }
+              ?>
+            </a>
+
+            <h5>
+              <a href="<?php the_permalink();?>" title="<?php the_title_attribute();?>">
+                <?php the_title(); ?>
+              </a>
+            </h5>
+            <p>
+              <?php 
+                if (has_excerpt()) {
+                  the_excerpt();
+                }
+              ?> 
+            </p>
+          </article>
+
+          <?php $this->section_wrapper(false);?>
+
+
+        <?php
+      }
+    }
+    wp_reset_query();
+
+    if ($this->row_counter % 2 != 0) {
+      echo "</section>  <!-- Close row to end uneven data. Now at ".$this->row_counter." -->";
+    }
+
+    $this->row_counter = 0;
+  }
+
+}
+
+$archive = new CVC_Archive($wp_query);
 
 ?>
 
   <main class="row">
     <div class="small-12 columns">
-      <?php the_breadcrumb(); ?>
-
-      <?php if (has_post_state_taxonomy() && has_post_with_state('current')) :?>
-        <h2>Current <?php post_type_archive_title();?></h2>      
-      <?php endif; ?>
 
       <?php 
-        $row_counter = 0;
-        if ( have_posts() ) {
-          while ( have_posts() ) {
-            the_post(); 
+        the_breadcrumb();
 
-            if (!is_past_post($post)) {
-              archive_content($post);              
-            }
-          }
+        // If Current & Past
+        if ($archive->has_current_and_past_posts()) {
+          $archive->do_loop("Current");
+          $archive->do_loop("Past");
         }
+
+        // If No Current & Past 
+        if (!$archive->has_current_and_past_posts()) {
+          $archive->do_loop();
+        }
+
       ?>
 
-      <?php if (has_post_state_taxonomy() &&  has_post_with_state('past')): ?>
-
-        <?php section_wrapper(false);?>
-
-        <h2>Past <?php post_type_archive_title();?></h2>
- 
-        <?php
-          
-          wp_reset_query();
-
-          $row_counter = 0;
-
-          if ( have_posts() ) {
-            while ( have_posts() ) {
-              the_post(); 
-              if (is_past_post($post)) {
-                archive_content($post);              
-              }
-
-            }
-          }
-        ?>      
- 
-     <?php endif; ?>
     </div>
   </main>
-<?php get_footer();?>
+
+<?php 
+get_footer();
+?>

@@ -103,10 +103,10 @@ class CVC_Sub_Nav {
 
         <div class="gallery-wrap">
           <a href="javascript:void(0)" class="scroll-left">
-            <i class="fa fa-chevron-left"></i>
+            <i class="fa fa-angle-left"></i>
           </a>
           <a href="javascript:void(0)" class="scroll-right">
-            <i class="fa fa-chevron-right"></i>
+            <i class="fa fa-angle-right"></i>
           </a>
           <div class="images-wrap">  
             <aside class="images">{{$images}}</aside>

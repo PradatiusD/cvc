@@ -30,7 +30,7 @@ Miami FL 33127<br>
 ## Helpful links for Dev
 
 * [Types PHP API](http://wp-types.com/documentation/user-guides/displaying-wordpress-custom-fields/)
-
+* Foundation 5 Documentation
 
 
 # Features to be added
@@ -53,3 +53,13 @@ See
 gem uninstall sass
 gem install sass -v 3.2.19
 ```
+
+
+   function has_post_state_taxonomy () {
+    $archive_name = get_queried_object();
+    $archive_name = $archive_name->rewrite['slug'];
+
+    if ($archive_name == 'exhibition' || $archive_name == 'event' || $archive_name == 'program') {
+      return true;
+    }
+  }

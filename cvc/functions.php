@@ -24,7 +24,7 @@ include_once('lib/cvc_sub_nav.php');
 function header_scripts () {
   wp_enqueue_style( 'theme-styles', get_stylesheet_uri() );
   wp_enqueue_style( 'google-fonts', '//fonts.googleapis.com/css?family=Roboto+Condensed:300,400|Roboto:400,700,400italic,700italic,300');
-  wp_enqueue_style( 'font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css');
+  wp_enqueue_style( 'font-awesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css');
   wp_enqueue_script('jquery');
 }
 
