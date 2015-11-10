@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* Theme Name: Center for Visual Communciation
  * Theme URI: http://visual.org
  * Author: Daniel Prada
@@ -11905,6 +11906,16 @@ footer img {
  */
 .cvc-gallery {
   text-align: left;
+}
+.cvc-gallery figcaption h2:after, .cvc-gallery figcaption h4:after {
+  content: " • ";
+}
+.cvc-gallery figcaption h2, .cvc-gallery figcaption h4, .cvc-gallery figcaption h6.subheader {
+  font-size: 1em;
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #808080;
+  font-weight: 300;
+  display: inline;
 }
 .cvc-gallery .featured {
   position: relative;

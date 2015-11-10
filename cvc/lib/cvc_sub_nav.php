@@ -96,7 +96,7 @@ class CVC_Sub_Nav {
           <figure></figure>
           <a href="javascript:void(0);" class="fa fa-angle-left"></a>
           <a href="javascript:void(0);" class="fa fa-angle-right"></a>
-          <figcaption class="small-12 columns text-center"></figcaption>
+          <figcaption class="small-12 columns"></figcaption>
         </article>
 
         <!-- Image Gallery -->

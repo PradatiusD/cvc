@@ -154,23 +154,39 @@
       this.css('transform',         transform);  // Firefox 16+, IE 10+, Opera 
     };
 
+
+    var galleryWidth;
+
     function moveSecondaryImagesOnClick (amount) {
 
       return function () {
 
-        var transformMatrix  = $images.css('transform'); // such as "matrix(1, 0, 0, 1, -500, 0)"
+        var transformMatrix = $images.css('transform'); // such as "matrix(1, 0, 0, 1, -500, 0)"
+        var newAmount;
+
+        if (!galleryWidth) {
+          galleryWidth = 0;
+
+          $images.find('img').each(function (){
+            galleryWidth += jQuery(this).width();
+          });          
+        }
 
         if (transformMatrix === "none") {
-
-          $images.setXTransform(amount);
+          newAmount = amount;
 
         } else {
+
           var getXTransformRegex = /([-]?\d{1,})/g;
           
           var currentXTransform  = transformMatrix.match(getXTransformRegex)[4];
           var newXTransform      = parseInt(currentXTransform) + amount;
 
-          $images.setXTransform(newXTransform);
+          newAmount = newXTransform;
+        }
+
+        if ( -galleryWidth < newAmount && newAmount < 0) {
+          $images.setXTransform(newAmount);
         }
       };
     }
