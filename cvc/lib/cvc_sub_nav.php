@@ -148,8 +148,8 @@ class CVC_Sub_Nav {
 
   function content_without_gallery ($post_content) {
     // Return the content without vc_galleries
-    $content_without_gallery = preg_replace('/\[vc_gallery .* images=".*?" .*\]/','', $post_content);
-    echo apply_filters('the_content', $content_without_gallery);
+    $content_without_gallery = preg_replace('/\[vc_gallery .* images=".*?" .*\]/','{{gallery}}', $post_content);
+    return apply_filters('the_content', $content_without_gallery);
   }
 
   /*
@@ -173,7 +173,7 @@ class CVC_Sub_Nav {
           <?php
           echo get_the_post_thumbnail( $post->ID, 'full');
 
-          $this->content_without_gallery($post->post_content);
+          echo $this->content_without_gallery($post->post_content);
 
           // Return the custom gallery
           $gallery = $this->create_gallery($post->post_content);

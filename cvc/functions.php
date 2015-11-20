@@ -69,7 +69,33 @@ function cvc_display_map(){
   echo '<div id="map-canvas" style="height:600px;"></div>';
   wp_enqueue_script( 'google-map', 'https://maps.googleapis.com/maps/api/js?v=3.exp', false, '3.0', true);
   wp_enqueue_script( 'cvc-map', get_stylesheet_directory_uri().'/js/cvc-map.js', array('google-map'), '1.0', true);
+}
+add_shortcode( 'cvc_map', 'cvc_display_map' );
 
+
+
+
+function modify_nav_menu_items($items, $args){
+
+  if ($args->theme_location == "header-menu") {
+
+    ob_start();?>
+      <li class="menu-item">
+        <a href="https://www.facebook.com/Center-for-Visual-Communication-158082450882461/" target="_blank">
+          <i class="fa fa-facebook-square"></i>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="https://instagram.com/cvcmiami/" target="_blank">
+          <i class="fa fa-instagram"></i>
+        </a>        
+      </li>
+    <?php
+    $items .= ob_get_clean();
+  }
+
+  return $items;
 }
 
-add_shortcode( 'cvc_map', 'cvc_display_map' );
+add_filter( 'wp_nav_menu_items', 'modify_nav_menu_items', 10, 2);
+

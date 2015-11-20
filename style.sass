@@ -37,15 +37,22 @@ h1, h2, h3, h4, h5, h6
 		font-weight: 300
 
 // Navigation/Header
+
 $topbar-height: rem-calc(60)
 $topbar-bg: $white
 $topbar-link-color: $dark
 $topbar-dropdown-toggle-color: $dark
+
 $topbar-link-font-family: $cvcHeaderFont
-$topbar-link-font-size: 1.1em
-$topbar-dropdown-bg: $dark
+$topbar-link-font-size:   0.9em
+$topbar-link-padding:     $topbar-height/4
+
+$topbar-dropdown-bg:      $dark
 $topbar-dropdown-link-bg: $dark
-$topbar-link-bg-hover: $black
+
+$topbar-link-bg-hover:    white
+$topbar-link-color-hover: #008CBA
+
 $topbar-menu-link-color: $black
 $topbar-menu-icon-color: $black
 
@@ -57,11 +64,6 @@ $topbar-menu-icon-color: $black
 header
 	background: $white
 
-.header-social
-	a
-		color: #000
-		font-size: 1.2em
-		padding: 0 0.5em
 
 // Buttons
 $button-font-family: $cvcHeaderFont
@@ -249,8 +251,12 @@ footer
 	@extend .row
 
 	text-align: left
+	margin-bottom: 2em !important
 
 	figcaption
+		margin: 0 auto
+		float: none
+		padding-left: 0px
 
 		h2, h4
 			&:after

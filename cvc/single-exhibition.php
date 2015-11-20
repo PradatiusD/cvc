@@ -18,9 +18,11 @@ $subnav = new CVC_Sub_Nav();
           <?php
             the_post(); 
             $content = get_the_content();
-            $subnav->content_without_gallery($content);
-            $with_gallery = $subnav->create_gallery($content);
-            echo $with_gallery;
+            $without_gallery = $subnav->content_without_gallery($content);
+            $gallery         = $subnav->create_gallery($content);
+
+            $content =  preg_replace('/{{gallery}}/',$gallery, $without_gallery);
+            echo $content;
           }?>
         </article><?php
       } else {

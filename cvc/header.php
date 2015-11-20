@@ -12,16 +12,6 @@
       <div class="main-wrapper">
         <header>
           <!-- Header Social Icons -->
-          <div class="text-right hide-for-small-only row header-social">
-            <div class="small-12">
-              <a href="https://www.facebook.com/Center-for-Visual-Communication-158082450882461/" target="_blank">
-                <i class="fa fa-facebook-square"></i>
-              </a>
-              <a href="https://instagram.com/cvcmiami/" target="_blank">
-                <i class="fa fa-instagram"></i>
-              </a>              
-            </div>
-          </div>
           <nav class="row">
             <div class="small-12 columns">
               <nav class="top-bar" data-topbar>

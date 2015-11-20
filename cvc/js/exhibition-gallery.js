@@ -96,11 +96,19 @@
 
         $figure.find('img').imagesLoaded(function () {
 
-          var newImgHeight = $figure.find('img').height() + 'px';
-          $parent.$arrows.css('line-height', newImgHeight);
+          var $img = $figure.find('img');
+
+          var newImgHeight = $img.height();
+          var newImgWidth  = $img.width();
+
+          $parent.$arrows.css('line-height', newImgHeight + "px");
+
+          $descriptions.css({
+            'width' : newImgWidth + "px",
+          });
 
           // Open full page image
-          $figure.find('img').click(function () {
+          $img.click(function () {
             window.open($figure.find('img').attr('src'), "_blank");
           });
         });
