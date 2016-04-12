@@ -74,18 +74,18 @@ class CVC_Archive {
     }
   }
 
-  function do_loop($target_post_state) {
+  function do_loop($target_post_state = false) {
 
     if (have_posts()) {
 
-      if (isset($target_post_state)) {
+      if ($target_post_state) {
         echo "<h2>".$target_post_state." ".$this->archive_title."</h2>";
       }
 
       while (have_posts()) {
         the_post();
 
-        if (isset($target_post_state)) {
+        if ($target_post_state) {
           $post_terms  = wp_get_post_terms(get_the_ID(), 'post-state');
           $target_slug = strtolower($target_post_state);
 

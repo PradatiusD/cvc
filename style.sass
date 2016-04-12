@@ -253,6 +253,9 @@ footer
 	text-align: left
 	margin-bottom: 2em !important
 
+	figure
+		margin-bottom: 0
+
 	figcaption
 		margin: 0 auto
 		float: none
@@ -260,10 +263,10 @@ footer
 
 		h2, h4
 			&:after
-				content: " • "
+				content: ", "
 
 		h2, h4, h6.subheader
-			font-size: 1em
+			font-size: 0.8em
 			font-family: $body-font-family
 			color: #808080
 			font-weight: 300
@@ -273,8 +276,7 @@ footer
 		position: relative
 
 		img
-			max-height: none
-			max-width: 92%
+			max-height: 567px
 			display: block
 			margin: 0 auto
 			cursor: pointer

@@ -26,5 +26,8 @@
     "grunt-contrib-copy": "~0.5.0",
     "grunt-contrib-uglify": "~0.4.0"
   },
-  "homepage": "https://github.com/PradatiusD/cvc"
+  "homepage": "https://github.com/PradatiusD/cvc",
+  "dependencies": {
+    "dotenv": "~2.0.0"
+  }
 }

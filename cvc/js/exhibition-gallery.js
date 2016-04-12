@@ -167,6 +167,8 @@
 
     function moveSecondaryImagesOnClick (amount) {
 
+      var images = [];
+
       return function () {
 
         var transformMatrix = $images.css('transform'); // such as "matrix(1, 0, 0, 1, -500, 0)"
@@ -193,14 +195,28 @@
           newAmount = newXTransform;
         }
 
-        if ( -galleryWidth < newAmount && newAmount < 0) {
-          $images.setXTransform(newAmount);
+        var $imageList = $images.find('img');
+
+        // if ( -galleryWidth < newAmount && newAmount < 0) {
+          // $images.setXTransform(newAmount);
+        // }
+
+        if (amount > 0) {
+          // Left
+          var $detached = $imageList.eq($imageList.length - 1).detach();
+          $images.prepend($detached);
+
+        } else {
+          // Right
+          var $detached = $imageList.eq(0).detach();
+          $images.append($detached);
         }
+
       };
     }
 
-    this.$scrollRight.click(moveSecondaryImagesOnClick(-500));
-    this.$scrollLeft.click(moveSecondaryImagesOnClick(500));
+    this.$scrollRight.click(moveSecondaryImagesOnClick(-100));
+    this.$scrollLeft.click(moveSecondaryImagesOnClick(100));
   };
 
   CVCGallery.prototype.createGallery = function () {
@@ -223,5 +239,7 @@
     cvc.createGallery();
 
   });
+
+
 
 })(jQuery);

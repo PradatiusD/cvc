@@ -21,7 +21,7 @@
 					</a><br>
 					
 					541 NW 27th St Miami, FL 33127 · <a href="tel:3055711415">305-571-1415</a><br>
-					<small>Copyright © 2014 Center for Visual Communication, Inc.</small>
+					<small>Copyright © <?php echo date("Y"); ?> Center for Visual Communication, Inc.</small>
 				</p>
 			</div>
 		</footer>
