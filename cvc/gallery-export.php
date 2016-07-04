@@ -21,8 +21,8 @@ function maybeEncodeCSVField($string) {
 }
 
 
-$post_meta   = get_data('SELECT * FROM wp_postmeta WHERE meta_key LIKE "wpcf-%"');
-$attachments = get_data('SELECT ID, guid, post_title FROM wp_posts WHERE post_type="attachment" and post_mime_type LIKE "image%"');
+$post_meta   = get_data('SELECT * FROM wp_pnkj_postmeta WHERE meta_key LIKE "wpcf-%"');
+$attachments = get_data('SELECT ID, guid, post_title FROM wp_pnkj_posts WHERE post_type="attachment" and post_mime_type LIKE "image%"');
 
 
 for ($i=0; $i < count($attachments); $i++) {
