@@ -145,9 +145,8 @@ $archive = new CVC_Archive($wp_query);
 
   <main class="row">
     <div class="small-12 columns">
-
+      <br>
       <?php 
-        the_breadcrumb();
 
         // If Current & Past
         if ($archive->has_current_and_past_posts()) {

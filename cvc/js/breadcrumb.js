@@ -7,8 +7,6 @@
 
 	$breadcrumb.each(function () {
 
-		console.log("haha")
-
 		var href = $(this).attr('href');
 		var text = $(this).text();
 
@@ -34,6 +32,5 @@
 	}
 
 	CVCBreadcrumb.append(newCrumb);
-	console.log(links);
 
 })(jQuery);

@@ -99,6 +99,9 @@ function modify_nav_menu_items($items, $args){
 
 add_filter( 'wp_nav_menu_items', 'modify_nav_menu_items', 10, 2);
 
+wp_enqueue_script('cvc-breadcrumb', get_stylesheet_directory_uri().'/js/breadcrumb.js', array('jquery'),'1.0.0', true);
+
+
 
 function single_with_custom_gallery () {
   get_header();
@@ -134,7 +137,6 @@ function single_with_custom_gallery () {
     </main>
 
   <?php
-  wp_enqueue_script('cvc-breadcrumb', get_stylesheet_directory_uri().'/js/breadcrumb.js', array('jquery'),'1.0.0', true);
   wp_enqueue_script('images-loaded', "https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.1.8/imagesloaded.pkgd.min.js", array('jquery'),'3.1.8', true);
   wp_enqueue_script('cvc-gallery', get_stylesheet_directory_uri().'/js/exhibition-gallery.js', array('jquery'), '1.0.0', true);
 
