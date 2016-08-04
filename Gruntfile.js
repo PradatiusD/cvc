@@ -2,7 +2,9 @@ require('dotenv').config();
 
 module.exports = function(grunt) {
 
-  var options = {};
+  var options = {
+    pkg: grunt.file.readJSON('package.json')
+  };
 
   options.php = {
     test: {
@@ -12,7 +14,7 @@ module.exports = function(grunt) {
         port: 5000
       }
     }
-  }
+  };
 
   options['ftp-deploy'] = {
     main: {
@@ -22,8 +24,8 @@ module.exports = function(grunt) {
         username: process.env.PRIMARY_FTP_USERNAME,
         password: process.env.PRIMARY_FTP_PASSWORD
       },
-      src: 'cvc',
-      dest: 'wp-content/themes/cvc',
+      src: options.pkg.name,
+      dest: options.pkg.name,
       exclusions: [
         'cvc/img/*',
         '.DS_Store',
