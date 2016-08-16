@@ -70,11 +70,11 @@ class CVC_Sub_Nav {
    * on a particular page.
    */
 
-  function create_gallery ($post_body) {
+  function create_gallery ($body_content) {
 
     $pattern = '/\[vc_gallery .* images="(.*?)" .*\]/';
     $replacement = '$1';
-    $gallery_string = preg_replace($pattern, $replacement, $post_body);
+    $gallery_string = preg_replace($pattern, $replacement, $body_content[0]);
 
     $gallery_string = explode(",", $gallery_string);
 
@@ -118,6 +118,8 @@ class CVC_Sub_Nav {
 
     $template = preg_replace('/{{\$images}}/i', $images, $template);
     return $template;
+
+
   }
 
  

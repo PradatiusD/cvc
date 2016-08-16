@@ -106,11 +106,6 @@ wp_enqueue_script('cvc-breadcrumb', get_stylesheet_directory_uri().'/js/breadcru
 function single_with_custom_gallery () {
   get_header();
   ?>
-
-  <?php
-  $subnav = new CVC_Sub_Nav();
-  ?>
-
     <main class="row">
       <div class="small-12 columns">
         <?php 
@@ -120,13 +115,12 @@ function single_with_custom_gallery () {
             <?php
               the_post(); 
               $content = get_the_content();
+              $content = preg_replace_callback('/\[vc_gallery.*?\]/', function ($matches) {
+                $subnav = new CVC_Sub_Nav();
+                return $subnav->create_gallery($matches);
+              }, $content);
 
-              $without_gallery = $subnav->content_without_gallery($content);
-              $gallery         = $subnav->create_gallery($content);
-
-              $content =  preg_replace('/{{gallery}}/',$gallery, $without_gallery);
-              $content =  str_replace('[/vc_column_text]', '', $content);
-              echo $content;
+              echo apply_filters('the_content', $content);;
             }?>
           </article><?php
         } else {
