@@ -76,7 +76,7 @@ module.exports = function(grunt) {
       files: 'cvc/js/homepage/*.js',
       tasks: ['uglify', 'copy']
     }
-  }
+  };
 
   options.uglify = {
     global: {
@@ -88,7 +88,7 @@ module.exports = function(grunt) {
         ]
       }
     }
-  }
+  };
 
   grunt.initConfig(options);
 

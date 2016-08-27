@@ -87,27 +87,16 @@ class CVC_Sub_Nav {
 
     ob_start();
     ?>
-      <!-- CVC Gallery Template -->
       <section class="cvc-gallery">
-
-        <!-- Featured Row -->
-
         <article class="featured row">
           <figure></figure>
           <a href="javascript:void(0);" class="fa fa-angle-left"></a>
           <a href="javascript:void(0);" class="fa fa-angle-right"></a>
           <figcaption class="small-12 columns"></figcaption>
         </article>
-
-        <!-- Image Gallery -->
-
         <div class="gallery-wrap">
-          <a href="javascript:void(0)" class="scroll-left">
-            <i class="fa fa-angle-left"></i>
-          </a>
-          <a href="javascript:void(0)" class="scroll-right">
-            <i class="fa fa-angle-right"></i>
-          </a>
+          <a href="javascript:void(0)" class="scroll-left"><i class="fa fa-angle-left"></i></a>
+          <a href="javascript:void(0)" class="scroll-right"><i class="fa fa-angle-right"></i></a>
           <div class="images-wrap">  
             <aside class="images">{{$images}}</aside>
           </div>
@@ -115,11 +104,8 @@ class CVC_Sub_Nav {
       </section>
     <?php
     $template = ob_get_clean();
-
     $template = preg_replace('/{{\$images}}/i', $images, $template);
     return $template;
-
-
   }
 
  

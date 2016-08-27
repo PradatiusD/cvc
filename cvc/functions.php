@@ -113,14 +113,32 @@ function single_with_custom_gallery () {
           while (have_posts()) {?>
           <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
             <?php
+
               the_post(); 
               $content = get_the_content();
               $content = preg_replace_callback('/\[vc_gallery.*?\]/', function ($matches) {
-                $subnav = new CVC_Sub_Nav();
-                return $subnav->create_gallery($matches);
+
+                $subnav  = new CVC_Sub_Nav();
+                $gallery = $subnav->create_gallery($matches);
+
+                return $gallery;
               }, $content);
 
-              echo apply_filters('the_content', $content);;
+              $content = apply_filters('the_content', $content);
+
+              $content = preg_replace_callback('/<section class="cvc-gallery">[\s\S]*<\/section>/i', function ($matches) {
+
+                if (empty($matches)) {
+                  return '';
+                }
+
+                $gallery = $matches[0];
+                $gallery = preg_replace('/(<br \/>|<p>|<\/p>)/', "", $gallery);
+                return $gallery;
+
+              }, $content);
+
+              echo $content;
             }?>
           </article><?php
         } else {
