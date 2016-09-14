@@ -28,7 +28,18 @@ function header_scripts () {
   wp_enqueue_script('jquery');
 }
 
+function footer_scripts () {
+  if (!is_single()) {
+    return;
+  }
+
+  wp_enqueue_script('images-loaded', "https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.1.8/imagesloaded.pkgd.min.js", array('jquery'),'3.1.8', true);
+  wp_enqueue_script('cvc-gallery', get_stylesheet_directory_uri().'/js/exhibition-gallery.js', array('jquery'), '1.0.0', true);
+}
+
 add_action('wp_enqueue_scripts','header_scripts');
+add_action('wp_enqueue_scripts','footer_scripts');
+
 
 // 470x314 size for archive pages
 add_image_size('archive-image', '470', '314', false); //uncropped
@@ -101,56 +112,34 @@ add_filter( 'wp_nav_menu_items', 'modify_nav_menu_items', 10, 2);
 
 wp_enqueue_script('cvc-breadcrumb', get_stylesheet_directory_uri().'/js/breadcrumb.js', array('jquery'),'1.0.0', true);
 
+function custom_gallery( $content ) {
 
+  if (!is_single()) {
+    return $content;
+  }
 
-function single_with_custom_gallery () {
-  get_header();
-  ?>
-    <main class="row">
-      <div class="small-12 columns">
-        <?php 
-        if ( have_posts()) {
-          while (have_posts()) {?>
-          <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-            <?php
+  $content = preg_replace_callback('/\[vc_gallery.*?\]/', function ($matches) {
 
-              the_post(); 
-              $content = get_the_content();
-              $content = preg_replace_callback('/\[vc_gallery.*?\]/', function ($matches) {
+    $subnav  = new CVC_Sub_Nav();
+    $gallery = $subnav->create_gallery($matches);
 
-                $subnav  = new CVC_Sub_Nav();
-                $gallery = $subnav->create_gallery($matches);
+    return $gallery;
+  }, $content);
 
-                return $gallery;
-              }, $content);
+  $content = preg_replace_callback('/<section class="cvc-gallery">[\s\S]*<!--gallery-end-->/i', function ($matches) {
 
-              $content = apply_filters('the_content', $content);
+    if (empty($matches)) {
+      return '';
+    }
 
-              $content = preg_replace_callback('/<section class="cvc-gallery">[\s\S]*<\/section>/i', function ($matches) {
+    $gallery = $matches[0];
+    $gallery = preg_replace('/(<br \/>|<p>|<\/p>)/', "", $gallery);
+    return $gallery;
 
-                if (empty($matches)) {
-                  return '';
-                }
+  }, $content);
 
-                $gallery = $matches[0];
-                $gallery = preg_replace('/(<br \/>|<p>|<\/p>)/', "", $gallery);
-                return $gallery;
-
-              }, $content);
-
-              echo $content;
-            }?>
-          </article><?php
-        } else {
-          _e('Sorry, no posts matched your criteria.');
-        }
-        ?>
-      </div>
-    </main>
-
-  <?php
-  wp_enqueue_script('images-loaded', "https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.1.8/imagesloaded.pkgd.min.js", array('jquery'),'3.1.8', true);
-  wp_enqueue_script('cvc-gallery', get_stylesheet_directory_uri().'/js/exhibition-gallery.js', array('jquery'), '1.0.0', true);
-
-  get_footer();
+  return $content;
 }
+add_filter('the_content','custom_gallery');
+
+

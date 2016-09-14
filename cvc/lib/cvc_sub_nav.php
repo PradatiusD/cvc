@@ -101,7 +101,7 @@ class CVC_Sub_Nav {
             <aside class="images">{{$images}}</aside>
           </div>
         </div>
-      </section>
+      </section><!--gallery-end-->
     <?php
     $template = ob_get_clean();
     $template = preg_replace('/{{\$images}}/i', $images, $template);
