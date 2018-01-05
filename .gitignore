@@ -1,10 +1,13 @@
 node_modules
-.ftppass
 bower_components
+
+.env
+.ftppass
 .sass-cache
+sftp_cache.json
+
 .DS_Store
 **/.DS_Store
-.env
 
 ### PhpStorm ###
 # Created by https://www.gitignore.io/api/phpstorm
