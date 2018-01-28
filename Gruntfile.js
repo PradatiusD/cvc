@@ -27,8 +27,8 @@ module.exports = function(grunt) {
             src: './cvc/',
             dest: '/wp-content/themes/cvc/',
             exclusions: [
-                'cvc/img/*',
                 '.DS_Store',
+                'cvc/img/*',
                 'favicon.ico',
                 'cvc/screenshot.png'
             ],

@@ -1,28 +1,28 @@
 <?php get_header();?>
 
-  <main class="row">
-    <div class="small-12 columns">
-      <?php 
-      if ( have_posts()) {
-        while (have_posts()) {?>
-        <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-          <?php
-            the_post();
+    <main class="row">
+        <div class="small-12 columns">
+            <?php
+            if ( have_posts()) {
+                while (have_posts()) {?>
+                    <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+                    <?php
+                    the_post();
 
-            $subheader = types_render_field("subtitle", array());
+                    $subheader = types_render_field("subtitle", array());
 
-            if (strlen($subheader)>0) {
-              echo "<small class='subheader'>".$subheader."</small>";
+                    if (strlen($subheader)>0) {
+                        echo "<small class='subheader'>".$subheader."</small>";
+                    }
+
+                    the_content('Read more...');
+
+                }?>
+                </article><?php
+            } else {
+                _e('Sorry, no posts matched your criteria.');
             }
-
-            the_content('Read more...');
-
-          }?>
-        </article><?php
-      } else {
-        _e('Sorry, no posts matched your criteria.');
-      }
-      ?>
-    </div>
-  </main>
+            ?>
+        </div>
+    </main>
 <?php get_footer();?>

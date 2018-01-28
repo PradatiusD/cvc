@@ -2,220 +2,220 @@
 
 class CVC_Sub_Nav {
 
-  private $taxonomy_name = 'artist';
-  
-  private $exhibitions    = array();
-  private $press_releases = array();
-  private $events         = array();
+    private $taxonomy_name = 'artist';
 
-  private $counter = 0;
+    private $exhibitions    = array();
+    private $press_releases = array();
+    private $events         = array();
 
-  /*
-   * Returns the First artist result from a taxonomy search from the post ID.
-   */
+    private $counter = 0;
 
-  function get_related_artist () {
-    global $wp_query;
-    
-    $post_id = $wp_query->queried_object->ID;
-    $related_artists = wp_get_post_terms($post_id, $this->taxonomy_name);
-    return $related_artists[0];
-  }
+    /*
+     * Returns the First artist result from a taxonomy search from the post ID.
+     */
 
-  /*
-   * Make a new query including these
-   */
+    function get_related_artist () {
+        global $wp_query;
 
-  function fetch_related_artist_posts () {
-
-    $related_artist = $this->get_related_artist();
-    $related_artist_slug = $related_artist->slug;
-
-    $args = array(
-      'artist' => $related_artist_slug,
-    );
-
-    $related_artist_posts = new WP_Query($args);
-
-    return $related_artist_posts;
-
-    // Reset Post Data
-    wp_reset_postdata();
-  }
-
-  /*
-   * Grab Image From Attachment ID
-   * ------------------------
-   * 
-   */
-
-  function create_image_from_attachment_id ($attachment_id) {
-
-    $image         = wp_get_attachment_image_src( $attachment_id, 'full');
-    $standard_meta = wp_get_attachment_metadata(  $attachment_id);
-    $cvc_metadata  = get_post_custom($attachment_id);
-
-    if (isset($image[0])) {
-      return '<img src="'.$image[0].'" data-attachment-id="'.$attachment_id.'" data-meta=\''.json_encode($cvc_metadata).'\'/>';
-    } else {
-      return '';
-    }
-  }
-
-  /*
-   * Create Gallery
-   * ------------------------
-   * Regex that turns a shortcode back into a comma separated list
-   * of attachment IDs, which are used to generate all the images seen
-   * on a particular page.
-   */
-
-  function create_gallery ($body_content) {
-
-    $pattern = '/\[vc_gallery .* images="(.*?)" .*\]/';
-    $replacement = '$1';
-    $gallery_string = preg_replace($pattern, $replacement, $body_content[0]);
-
-    $gallery_string = explode(",", $gallery_string);
-
-    $images = '';
-
-    for ($i=0; $i < sizeOf($gallery_string); $i++) {
-      $attachment_id = $gallery_string[$i];
-      $images .= $this->create_image_from_attachment_id($attachment_id);
+        $post_id = $wp_query->queried_object->ID;
+        $related_artists = wp_get_post_terms($post_id, $this->taxonomy_name);
+        return $related_artists[0];
     }
 
-    ob_start();
-    ?>
-      <section class="cvc-gallery">
-        <article class="featured row">
-          <figure></figure>
-          <a href="javascript:void(0);" class="fa fa-angle-left"></a>
-          <a href="javascript:void(0);" class="fa fa-angle-right"></a>
-          <figcaption class="small-12 columns"></figcaption>
-        </article>
-        <div class="gallery-wrap">
-          <a href="javascript:void(0)" class="scroll-left"><i class="fa fa-angle-left"></i></a>
-          <a href="javascript:void(0)" class="scroll-right"><i class="fa fa-angle-right"></i></a>
-          <div class="images-wrap">  
-            <aside class="images">{{$images}}</aside>
-          </div>
-        </div>
-      </section><!--gallery-end-->
-    <?php
-    $template = ob_get_clean();
-    $template = preg_replace('/{{\$images}}/i', $images, $template);
-    return $template;
-  }
+    /*
+     * Make a new query including these
+     */
 
- 
-  /*
-   * Create a Subnavigation Tab
-   * ----------------
-   */
+    function fetch_related_artist_posts () {
 
-  function create_tab($posts_array) {
+        $related_artist = $this->get_related_artist();
+        $related_artist_slug = $related_artist->slug;
 
-    ob_start(); 
+        $args = array(
+            'artist' => $related_artist_slug,
+        );
 
-      if (sizeof($posts_array) > 0):
+        $related_artist_posts = new WP_Query($args);
 
-        $post_type_title = get_post_type_object($posts_array[0]->post_type);
-        $this->counter++;
-        ?>
-          <li class="tab-title <?php echo ($this->counter === 1) ?'active': '';?>">
-            <a href="#panel<?php echo $this->counter;?>"><?php echo $post_type_title->labels->name; ?></a>
-          </li>
-        <?php
+        return $related_artist_posts;
 
-      endif;
+        // Reset Post Data
+        // wp_reset_postdata();
+    }
 
-    $content = ob_get_clean();
-    echo $content;
-  }
+    /*
+     * Grab Image From Attachment ID
+     * ------------------------
+     *
+     */
 
-  function content_without_gallery ($post_content) {
-    // Return the content without vc_galleries
-    $content_without_gallery = preg_replace('/\[vc_gallery .* images=".*?" .*\]/','{{gallery}}', $post_content);
-    return apply_filters('the_content', $content_without_gallery);
-  }
+    function create_image_from_attachment_id ($attachment_id) {
 
-  /*
-   * Create a tab content
-   */
+        $image         = wp_get_attachment_image_src( $attachment_id, 'full');
+        $standard_meta = wp_get_attachment_metadata(  $attachment_id);
+        $cvc_metadata  = get_post_custom($attachment_id);
 
-  function create_tab_content($posts_array) {
+        if (isset($image[0])) {
+            return '<img src="'.$image[0].'" data-attachment-id="'.$attachment_id.'" data-meta=\''.json_encode($cvc_metadata).'\'/>';
+        } else {
+            return '';
+        }
+    }
 
-    ob_start();
+    /*
+     * Create Gallery
+     * ------------------------
+     * Regex that turns a shortcode back into a comma separated list
+     * of attachment IDs, which are used to generate all the images seen
+     * on a particular page.
+     */
 
-    if (sizeof($posts_array) > 0):
-      $this->counter++;
-    ?>
-    <div class="content <?php echo ($this->counter === 1) ?'active': '';?>" id="panel<?php echo $this->counter;?>">
-      <?php
-        foreach ($posts_array as $post):?>
+    function create_gallery ($body_content) {
 
-          <h2><?php echo $post->post_title;?></h2>
-          <h4 class="subheader"><?php echo do_shortcode("[types field='subtitle' id='".$post->ID."']");?></h4>
+        $pattern = '/\[vc_gallery .* images="(.*?)" .*\]/';
+        $replacement = '$1';
+        $gallery_string = preg_replace($pattern, $replacement, $body_content[0]);
 
-          <?php
-          echo get_the_post_thumbnail( $post->ID, 'full');
+        $gallery_string = explode(",", $gallery_string);
 
-          echo $this->content_without_gallery($post->post_content);
+        $images = '';
 
-          // Return the custom gallery
-          $gallery = $this->create_gallery($post->post_content);
-          echo $gallery;
-
-        endforeach;
-      ?>
-    </div>
-    <?php
-    endif;
-    $content = ob_get_clean();
-    echo $content;    
-  }
-
-  function build_sub_nav ($artist_query) {
-
-    if ($artist_query->have_posts()):
-      while ($artist_query->have_posts()) : $artist_query->the_post();
-
-        $post = $artist_query->post;
-
-        if ($post->post_type === 'exhibition') {
-          array_push($this->exhibitions, $post);
-        } else if ($post->post_type === 'event') {
-          array_push($this->events, $post);
-        } else if ($post->post_type === 'press-release') {
-          array_push($this->press_releases, $post);
+        for ($i=0; $i < sizeOf($gallery_string); $i++) {
+            $attachment_id = $gallery_string[$i];
+            $images .= $this->create_image_from_attachment_id($attachment_id);
         }
 
-      endwhile;
-    endif;
+        ob_start();
+        ?>
+        <section class="cvc-gallery">
+            <article class="featured row">
+                <figure></figure>
+                <a href="javascript:void(0);" class="fa fa-angle-left"></a>
+                <a href="javascript:void(0);" class="fa fa-angle-right"></a>
+                <figcaption class="small-12 columns"></figcaption>
+            </article>
+            <div class="gallery-wrap">
+                <a href="javascript:void(0)" class="scroll-left"><i class="fa fa-angle-left"></i></a>
+                <a href="javascript:void(0)" class="scroll-right"><i class="fa fa-angle-right"></i></a>
+                <div class="images-wrap">
+                    <aside class="images">{{$images}}</aside>
+                </div>
+            </div>
+        </section><!--gallery-end-->
+        <?php
+        $template = ob_get_clean();
+        $template = preg_replace('/{{\$images}}/i', $images, $template);
+        return $template;
+    }
 
-  ?>
-    <div class="row">
-      <div class="small-12 columns">
-        <hr>
-        <ul class="tabs" data-tab>
-          <?php 
-            $this->create_tab($this->exhibitions);
-            $this->create_tab($this->press_releases);
-            $this->create_tab($this->events);
-          ?>
-        </ul>
-        <div class="tabs-content">
-          <?php
-            // Reset Counter
-            $this->counter = 0;
-            $this->create_tab_content($this->exhibitions);
-            $this->create_tab_content($this->press_releases);
-            $this->create_tab_content($this->events);
-          ?>
+
+    /*
+     * Create a Subnavigation Tab
+     * ----------------
+     */
+
+    function create_tab($posts_array) {
+
+        ob_start();
+
+        if (sizeof($posts_array) > 0):
+
+            $post_type_title = get_post_type_object($posts_array[0]->post_type);
+            $this->counter++;
+            ?>
+            <li class="tab-title <?php echo ($this->counter === 1) ?'active': '';?>">
+                <a href="#panel<?php echo $this->counter;?>"><?php echo $post_type_title->labels->name; ?></a>
+            </li>
+        <?php
+
+        endif;
+
+        $content = ob_get_clean();
+        echo $content;
+    }
+
+    function content_without_gallery ($post_content) {
+        // Return the content without vc_galleries
+        $content_without_gallery = preg_replace('/\[vc_gallery .* images=".*?" .*\]/','{{gallery}}', $post_content);
+        return apply_filters('the_content', $content_without_gallery);
+    }
+
+    /*
+     * Create a tab content
+     */
+
+    function create_tab_content($posts_array) {
+
+        ob_start();
+
+        if (sizeof($posts_array) > 0):
+            $this->counter++;
+            ?>
+            <div class="content <?php echo ($this->counter === 1) ?'active': '';?>" id="panel<?php echo $this->counter;?>">
+                <?php
+                foreach ($posts_array as $post):?>
+
+                    <h2><?php echo $post->post_title;?></h2>
+                    <h4 class="subheader"><?php echo do_shortcode("[types field='subtitle' id='".$post->ID."']");?></h4>
+
+                    <?php
+                    echo get_the_post_thumbnail( $post->ID, 'full');
+
+                    echo $this->content_without_gallery($post->post_content);
+
+                    // Return the custom gallery
+                    $gallery = $this->create_gallery($post->post_content);
+                    echo $gallery;
+
+                endforeach;
+                ?>
+            </div>
+        <?php
+        endif;
+        $content = ob_get_clean();
+        echo $content;
+    }
+
+    function build_sub_nav ($artist_query) {
+
+        if ($artist_query->have_posts()):
+            while ($artist_query->have_posts()) : $artist_query->the_post();
+
+                $post = $artist_query->post;
+
+                if ($post->post_type === 'exhibition') {
+                    array_push($this->exhibitions, $post);
+                } else if ($post->post_type === 'event') {
+                    array_push($this->events, $post);
+                } else if ($post->post_type === 'press-release') {
+                    array_push($this->press_releases, $post);
+                }
+
+            endwhile;
+        endif;
+
+        ?>
+        <div class="row">
+            <div class="small-12 columns">
+                <hr>
+                <ul class="tabs" data-tab>
+                    <?php
+                    $this->create_tab($this->exhibitions);
+                    $this->create_tab($this->press_releases);
+                    $this->create_tab($this->events);
+                    ?>
+                </ul>
+                <div class="tabs-content">
+                    <?php
+                    // Reset Counter
+                    $this->counter = 0;
+                    $this->create_tab_content($this->exhibitions);
+                    $this->create_tab_content($this->press_releases);
+                    $this->create_tab_content($this->events);
+                    ?>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  <?php
-  }
+        <?php
+    }
 };
