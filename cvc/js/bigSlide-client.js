@@ -23,7 +23,6 @@
             } else if (href.indexOf('instagram') > -1) {
                 $a.html($a.html() + ' Follow us on Instagram');
             }
-
         });
 
         mobileMenu.show();

@@ -83,9 +83,10 @@ $button-font-family: $cvcHeaderFont
 
 /* Header Area */
 .title-area
+
   img
-    height: 40px
-    margin-top: 3px
+    height: 36px
+
   a
     color: $dark
     font-size: 1.3em
@@ -355,6 +356,7 @@ footer
   width:  15.625em
   background: black
   padding: 0
+  border: 0
 
   & > ul, .sub-menu
     margin-left: 0
@@ -362,8 +364,11 @@ footer
   .menu > li
     display: block
 
-  .menu > li, .sub-menu > li, .menu-item-has-children > a
+  .menu > li, .sub-menu > li
     border-bottom: 1px solid #717171
+
+  .menu-item-has-children > a
+    display: none    
 
   .sub-menu > li:last-child
     border-bottom: none
@@ -398,5 +403,5 @@ footer
 
 .title-area img
   +max-screen(470px)
-    height: 33px
+    height: 30px
     margin-top: 0

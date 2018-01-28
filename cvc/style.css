@@ -12178,8 +12178,7 @@ th.hide-for-touch {
 
 /* Header Area */
 .title-area img {
-  height: 40px;
-  margin-top: 3px;
+  height: 36px;
 }
 .title-area a {
   color: #262626;
@@ -12456,6 +12455,7 @@ footer img {
   width: 15.625em;
   background: black;
   padding: 0;
+  border: 0;
 }
 .panel.panel-mobile-side-menu > ul, .panel.panel-mobile-side-menu .sub-menu {
   margin-left: 0;
@@ -12463,8 +12463,11 @@ footer img {
 .panel.panel-mobile-side-menu .menu > li {
   display: block;
 }
-.panel.panel-mobile-side-menu .menu > li, .panel.panel-mobile-side-menu .sub-menu > li, .panel.panel-mobile-side-menu .menu-item-has-children > a {
+.panel.panel-mobile-side-menu .menu > li, .panel.panel-mobile-side-menu .sub-menu > li {
   border-bottom: 1px solid #717171;
+}
+.panel.panel-mobile-side-menu .menu-item-has-children > a {
+  display: none;
 }
 .panel.panel-mobile-side-menu .sub-menu > li:last-child {
   border-bottom: none;
@@ -12506,7 +12509,7 @@ footer img {
 
 @media screen and (max-width: 470px) {
   .title-area img {
-    height: 33px;
+    height: 30px;
     margin-top: 0;
   }
 }
