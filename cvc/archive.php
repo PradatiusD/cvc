@@ -89,7 +89,7 @@ class CVC_Archive {
                     $post_terms  = wp_get_post_terms(get_the_ID(), 'post-state');
                     $target_slug = strtolower($target_post_state);
 
-                    if ($target_slug == $post_terms[0]->slug) {
+                    if (isset($post_terms[0]) && $target_slug == $post_terms[0]->slug) {
                         continue;
                     }
                 }

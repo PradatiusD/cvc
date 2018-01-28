@@ -67,17 +67,13 @@ module.exports = function(grunt) {
         options: {
             livereload: true
         },
-        theme: {
-            files: ['cvc/*.php', 'cvc/lib/*.php', 'cvc/js/*.js'],
-            tasks: ['copy']
-        },
         sassy: {
             files: 'style.sass',
-            tasks: ['sass', 'copy']
+            tasks: ['sass']
         },
         homepageJS: {
             files: 'cvc/js/homepage/*.js',
-            tasks: ['uglify', 'copy']
+            tasks: ['uglify']
         }
     };
 

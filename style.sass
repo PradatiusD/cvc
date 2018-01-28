@@ -8,7 +8,7 @@
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * Tags: simple
  * Text Domain: cvc
- * 
+ *
  * This theme, like WordPress, is licensed under the GPL.
  * Use it to make something cool, have fun, and share what you've learned with others.
  *  */
@@ -23,18 +23,26 @@ $white: white
 @import "bower_components/animate.scss/animate"
 @import "bower_components/bourbon/app/assets/stylesheets/bourbon"
 @import "bower_components/sass-mediaqueries/media-queries"
-@import "bower_components/imagelightbox/dist/imagelightbox.min.scss"
+@import "bower_components/imagelightbox/dist/imagelightbox.min.css"
 
 // Typography
 
+*
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+
 $body-font-family: "Roboto", $helvetica
 $cvcHeaderFont: "Roboto Condensed", $body-font-family
+$base-font-size: 20px
+$rem-base: $base-font-size
 
 $header-font-family: $cvcHeaderFont
+
 h1, h2, h3, h4, h5, h6
-	&.subheader
-		font-family: $body-font-family
-		font-weight: 300
+  &.subheader
+    font-family: $body-font-family
+    font-weight: 300
+
 
 // Navigation/Header
 
@@ -44,7 +52,7 @@ $topbar-link-color: $dark
 $topbar-dropdown-toggle-color: $dark
 
 $topbar-link-font-family: $cvcHeaderFont
-$topbar-link-font-size:   0.9em
+$topbar-link-font-size:   0.75em
 $topbar-link-padding:     $topbar-height/4
 
 $topbar-dropdown-bg:      $dark
@@ -57,12 +65,12 @@ $topbar-menu-link-color: $black
 $topbar-menu-icon-color: $black
 
 .top-bar a
-	font-family: $cvcHeaderFont
-	text-transform: uppercase
-	+transition(background 0.15s ease-in-out)
+  font-family: $cvcHeaderFont
+  text-transform: uppercase
+  +transition(background 0.15s ease-in-out)
 
 header
-	background: $white
+  background: $white
 
 
 // Buttons
@@ -71,174 +79,178 @@ $button-font-family: $cvcHeaderFont
 @import "bower_components/foundation/scss/foundation"
 
 .top-bar-section ul li
-	background: #E4E4E4
+  background: #E4E4E4
 
 /* Header Area */
-.title-area 
-	img
-		height: 40px
-		margin-top: 3px
-	a
-		color: $dark
-		font-size: 1.3em
-		display: inline-block
-		padding-top: 0.3em
-		span
-			display: none
-			+min-screen(40.063em)
-				display: inline
+.title-area
+  img
+    height: 40px
+    margin-top: 3px
+  a
+    color: $dark
+    font-size: 1.3em
+    display: inline-block
+    padding-top: 0.3em
+    span
+      display: none
+      +min-screen(40.063em)
+        display: inline
 
 .breadcrumbs
-	margin-top: 1em
+  margin-top: 1em
 
 #wpadminbar
-	+max-screen(600px)
-		margin-top: -46px !important
+  +max-screen(600px)
+    margin-top: -46px !important
 
 /* Wordpress Utility Classes */
 img
-	&.aligncenter
-		margin: 0 auto
-		display: block
+  &.aligncenter
+    margin: 0 auto
+    display: block
 
-	&.full-width
-		width: 100%
+  &.full-width
+    width: 100%
 
 /* Footer Area */
 
 footer
-	background: $white
-	color: $dark
+  background: $white
+  color: $dark
 
-	.footer-details
-		font-family: $cvcHeaderFont
-		text-transform: uppercase
-		font-size: 1.2em
-		position: relative
-		top: 2px
+  .footer-details
+    font-family: $cvcHeaderFont
+    text-transform: uppercase
+    font-size: 1.2em
+    position: relative
+    top: 2px
 
-	a
-		color: $dark
+  a
+    color: $dark
 
-	h4
-		text-transform: uppercase
-		&, a
-			color: $dark
+  h4
+    text-transform: uppercase
+    &, a
+      color: $dark
 
-	img
-		max-height: 37px
+  img
+    max-height: 37px
 
 /* Homepage */
 .home-header
-	background: url('img/cvc-building.jpg')
-	background-size: cover
-	background-position: center
-	padding: 2em 0
+  background: url('img/cvc-building.jpg')
+  background-size: cover
+  background-position: center
+  padding: 2em 0
 
-	h1, h3
-		color: white
-		background: rgba(8, 8, 91, 0.5)
-		padding: 0.5em 12px
+  h1, h3
+    color: white
+    background: rgba(8, 8, 91, 0.5)
+    padding: 0.5em 12px
 
-	h3
-		font-weight: 300
+  h3
+    font-weight: 300
 
 /* Taxonomy Arcihve */
 .archive-header
-	margin-top: 1em
-	h1
-		color: $black
+  margin-top: 1em
+  h1
+    color: $black
 
 
 /* Google Map Shortcode */
 #map-canvas
-	
-	.gm-style-iw
-		left: 7% !important
 
-	#content
-		text-align: center
-	
-		address
-			font-size: 1.4em
-			text-align: center
-			text-transform: uppercase
-			font-family: $cvcHeaderFont
-			font-weight: 400
-			font-style: normal
-			letter-spacing: 0.5px
+  .gm-style-iw
+    left: 7% !important
+
+  #content
+    text-align: center
+
+    address
+      font-size: 1.4em
+      text-align: center
+      text-transform: uppercase
+      font-family: $cvcHeaderFont
+      font-weight: 400
+      font-style: normal
+      letter-spacing: 0.5px
 
 /* Lightbox plugin */
 
 #imagelightbox-caption
-	text-align: center
-	color: #fff
-	background-color: $black
-	position: fixed
-	z-index: 10001
-	font-family: $cvcHeaderFont
-	font-size: 1.7em
-	text-transform: uppercase
-	left: 0
-	right: 0
-	bottom: 0
-	padding: 0.625em
+  text-align: center
+  color: #fff
+  background-color: $black
+  position: fixed
+  z-index: 10001
+  font-family: $cvcHeaderFont
+  font-size: 1.7em
+  text-transform: uppercase
+  left: 0
+  right: 0
+  bottom: 0
+  padding: 0.625em
 
 #imagelightbox
-	cursor: pointer
+  cursor: pointer
 
 
 .archive .hentry img
-	height: 313px
-	+max-screen(993px)
-		height: inherit
-		max-height: 373px
-	width: auto
+  height: 313px
+  +max-screen(993px)
+    height: inherit
+    max-height: 373px
+  width: auto
 
 
 /* Special classes for homepage */
 .hide
-	display: none !important
+  display: none !important
 
 .no_left_margin
-	margin-left: 0 !important
+  margin-left: 0 !important
 
 
 .home
 
-	.wpb_text_column, .wpb_separator.wpb_content_element
-		margin-bottom: 1em
+  .wpb_text_column, .wpb_separator.wpb_content_element
+    margin-bottom: 1em
 
-	.homepage-top-5 img
-		width: 100px
-		height: auto
+  .homepage-top-5 img
+    width: 100px
+    height: auto
 
-	.wpb_row p
-		font-size: 0.85rem
-		line-height: 1.4
+  .homepage-top-5 p
+    +max-screen(500px)
+      font-size: 12px !important
 
-	.wpb_content_element.aligncenter
-		img 
-			@extend .aligncenter
-	
-	.img_full_width
-		width: 100%
+  .wpb_row p
+    font-size: 0.85rem
+    line-height: 1.4
+
+  .wpb_content_element.aligncenter
+    img
+      @extend .aligncenter
+
+  .img_full_width
+    width: 100%
 
 
-	.vc_spanFifths
-		width: 18% !important
-		float: left !important
-		text-align: center !important
+  .vc_spanFifths
+    width: 20% !important
+    float: left !important
+    text-align: center !important
 
-		.wpb_single_image
-			margin-bottom: 0
+    .wpb_single_image
+      margin-bottom: 0
 
-		+max-screen(480px)
-			.vc_spanFifths
-				margin: 2%
+    +max-screen(480px)
+      .vc_spanFifths
+        margin: 2%
 
-				p
-					font-size: 0.8em
+        p
+          font-size: 0.8em
 
 
 /*
@@ -248,90 +260,143 @@ footer
  */
 
 .cvc-gallery
-	@extend .row
+  @extend .row
 
-	text-align: left
-	margin-bottom: 2em !important
+  text-align: left
+  margin-bottom: 2em !important
 
-	figure
-		margin-bottom: 0
+  figure
+    margin-bottom: 0
 
-	figcaption
-		margin: 0 auto
-		float: none
-		padding-left: 0px
+  figcaption
+    margin: 0 auto
+    float: none
+    padding-left: 0px
 
-		h2, h4
-			&:after
-				content: ", "
+    h2, h4
+      &:after
+        content: ", "
 
-		h2, h4, h6.subheader
-			font-size: 0.8em
-			font-family: $body-font-family
-			color: #808080
-			font-weight: 300
-			display: inline
+    h2, h4, h6.subheader
+      font-size: 0.8em
+      font-family: $body-font-family
+      color: #808080
+      font-weight: 300
+      display: inline
 
-	.featured
-		position: relative
+  .featured
+    position: relative
 
-		img
-			max-height: 567px
-			display: block
-			margin: 0 auto
-			cursor: pointer
+    img
+      max-height: 567px
+      display: block
+      margin: 0 auto
+      cursor: pointer
 
-		.fa
-			position: absolute
-			font-size: 2.5em
-			color: #BBB
-			z-index: 10000
-			top: 0
-			
-			&.fa-angle-left
-				left: 23px
+    .fa
+      position: absolute
+      font-size: 2.5em
+      color: #BBB
+      z-index: 10000
+      top: 0
 
-			&.fa-angle-right
-				right: 23px
-	span
-		display: block
+      &.fa-angle-left
+        left: 23px
 
-		img
-			max-height: none
-			display: block
-			margin: 0 auto
+      &.fa-angle-right
+        right: 23px
+  span
+    display: block
 
-	img
-		max-height: 166px
-		padding: 0.25em
-		cursor: pointer
+    img
+      max-height: none
+      display: block
+      margin: 0 auto
 
-	.gallery-wrap
-		position: relative
+  img
+    max-height: 166px
+    padding: 0.25em
+    cursor: pointer
 
-	.scroll-left, .scroll-right
-		position: absolute
-		font-size: 3em
-		color: #BBB
-		line-height: 166px
+  .gallery-wrap
+    position: relative
 
-	.scroll-left
-		left: -37px
+  .scroll-left, .scroll-right
+    position: absolute
+    font-size: 3em
+    color: #BBB
+    line-height: 166px
 
-	.scroll-right
-		right: -37px
+  .scroll-left
+    left: -37px
 
-	.images-wrap
-		overflow-x: hidden
-		height: 166px
-		position: relative
+  .scroll-right
+    right: -37px
 
-		.images
-			position: absolute
-			+transition(transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1))
-			width: 10000px
-			top: 0
-			left: 0
+  .images-wrap
+    overflow-x: hidden
+    height: 166px
+    position: relative
 
-			img.active
-				border: 1px solid rgba(128, 128, 128, 0.51)
+    .images
+      position: absolute
+      +transition(transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1))
+      width: 10000px
+      top: 0
+      left: 0
+
+      img.active
+        border: 1px solid rgba(128, 128, 128, 0.51)
+
+/* Mobile Menu */
+.panel.panel-mobile-side-menu
+  position: fixed
+  left: -15.625em
+  width:  15.625em
+  background: black
+  padding: 0
+
+  & > ul, .sub-menu
+    margin-left: 0
+
+  .menu > li
+    display: block
+
+  .menu > li, .sub-menu > li, .menu-item-has-children > a
+    border-bottom: 1px solid #717171
+
+  .sub-menu > li:last-child
+    border-bottom: none
+
+  a
+    color: white
+    padding: 0.5em 1em
+    display: block
+    text-transform: uppercase
+    font-family: $cvcHeaderFont
+
+
+
+.mobile-nav-push
+  position: relative
+
+.mobile-menu-nav-link
+  float: left
+  font-size: 1.2em
+  color: black
+  +min-screen(997px)
+    display: none
+
+.top-bar-section
+  +max-screen(996px)
+    display: none
+
+
+.top-bar .title-area
+  +max-screen(996px)
+    float: right
+
+.title-area img
+  +max-screen(470px)
+    height: 33px
+    margin-top: 0
