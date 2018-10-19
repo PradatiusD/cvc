@@ -1,0 +1,74 @@
+<style>
+
+    .instafeed-profile-picture {
+        width: 45px;
+        height: 45px;
+        max-height: none;
+        float: left;
+        border-radius: 100%;
+        border: 1px solid #bfbfbf;
+        margin-right: 7px;
+    }
+
+    .instafeed-fullname {
+        float: left;
+    }
+
+    .instafeed-post-image {
+        max-width: 100%;
+        max-height: none;
+        clear: both;
+    }
+    
+    .instafeed-caption {
+        font-size: 14px;
+    }
+
+    .instafeed-username {
+        float: left;
+        font-weight: bold;
+        font-size: 19px;
+    }
+
+
+</style>
+
+<div id="instafeed">
+    
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/instafeed.js/1.4.1/instafeed.min.js"></script>
+<script type="text/javascript">
+
+    (function ($) {
+
+        var feed = new Instafeed({
+            get: 'user',
+            userId: '1558655056',
+            accessToken: '1558655056.1677ed0.c0c5be72a32742b3822ba8ba2d6eeb0f',
+            clientId: 'fe194f7da6274dfdad9cbd74d3e8e8ed',
+            template: '',
+            success: function (response) {
+
+                var post = response.data[0];
+                var profileURL = "https://www.instagram.com/"+post.user.username+"/";
+                var likesHTML = post.likes.count > 0 ?  "<strong>" + post.likes.count.toString() + " likes</strong> ": " ";
+
+                $('#instafeed').append(
+                    "<a href=\""+profileURL+"\" target=\"_blank\"><img class=\"instafeed-profile-picture\" src=\"" + post.user.profile_picture + "\">" +
+                    "<a class=\"instafeed-username\" href=\""+profileURL+"\" target=\"_blank\">" + post.user.username + "</a>" +
+                    "<small class=\"instafeed-fullname\">" + post.user.full_name + "</small>" +
+                    "<a href=\""+post.link+"\" target=\"_blank\">" + 
+                        "<img class=\"instafeed-post-image\" src=\"" + post.images.standard_resolution.url + "\">" +
+                    "</a>" +
+                    "<p class=\"instafeed-caption\">" +
+                        likesHTML + post.caption.text +
+                    "</p>"
+                );
+
+                console.log("Instagram post", post);
+            }
+        });
+        feed.run();
+
+    })(jQuery);
+</script>
