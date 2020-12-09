@@ -76,9 +76,10 @@
         // If no data add button to edit it
         if (Object.keys(meta).length === 0 && isLoggedIn) {
           descriptions += '<h6 class="subheader">No Metadata found</p>'
-          // http://localhost/cvc/wp-admin/pos
           descriptions += '<a class="secondary button" href="http://cvc.pradadesigners.com/wp-admin/post.php?post=' + id + '&action=edit" target="blank">Edit Metadata</a>'
         }
+
+        console.log({ meta, descriptions })
 
         $figure.html('<img src="' + imgSrc + '"/>')
 
@@ -118,9 +119,9 @@
       return function (e) {
         e.preventDefault()
 
-        if (direction == 'right') {
+        if (direction === 'right') {
           $this.imgIndex++
-        } else if (direction == 'left') {
+        } else if (direction === 'left') {
           $this.imgIndex--
         }
 
@@ -159,7 +160,7 @@
           galleryWidth = 0
 
           $images.find('img').each(function () {
-            galleryWidth += jQuery(this).width()
+            galleryWidth += $(this).width()
           })
         }
 
@@ -180,13 +181,14 @@
         // $images.setXTransform(newAmount);
         // }
 
+        var $detached
         if (amount > 0) {
           // Left
-          var $detached = $imageList.eq($imageList.length - 1).detach()
+          $detached = $imageList.eq($imageList.length - 1).detach()
           $images.prepend($detached)
         } else {
           // Right
-          var $detached = $imageList.eq(0).detach()
+          $detached = $imageList.eq(0).detach()
           $images.append($detached)
         }
       }
@@ -212,4 +214,4 @@
     const cvc = new CVCGallery($gallery)
     cvc.createGallery()
   })
-})(jQuery)
+})(window.jQuery)

@@ -124,7 +124,7 @@ function custom_gallery( $content ) {
 
     $content = preg_replace_callback('/\[vc_gallery.*?\]/', function ($matches) {
 
-        $subnav  = new CVC_Sub_Nav();
+        $subnav = new CVC_Sub_Nav();
         $gallery = $subnav->create_gallery($matches);
 
         return $gallery;

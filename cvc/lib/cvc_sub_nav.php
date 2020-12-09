@@ -51,9 +51,9 @@ class CVC_Sub_Nav {
 
     function create_image_from_attachment_id ($attachment_id) {
 
-        $image         = wp_get_attachment_image_src( $attachment_id, 'full');
+        $image = wp_get_attachment_image_src( $attachment_id, 'full');
         $standard_meta = wp_get_attachment_metadata(  $attachment_id);
-        $cvc_metadata  = get_post_custom($attachment_id);
+        $cvc_metadata = get_post_custom($attachment_id);
 
         if (isset($image[0])) {
             return '<img src="'.$image[0].'" data-attachment-id="'.$attachment_id.'" data-meta=\''.json_encode($cvc_metadata).'\'/>';
