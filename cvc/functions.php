@@ -22,7 +22,7 @@ include_once('lib/foundation_nav_walker.php');
 include_once('lib/cvc_sub_nav.php');
 
 function header_scripts () {
-    wp_enqueue_style( 'theme-styles', get_stylesheet_uri(), array(), '2.0.2');
+    wp_enqueue_style( 'theme-styles', get_stylesheet_uri(), array(), '2.1.2');
     wp_enqueue_style( 'google-fonts', 'https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400|Roboto:400,700,400italic,700italic,300');
     wp_enqueue_style( 'font-awesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css');
     wp_enqueue_script('jquery');

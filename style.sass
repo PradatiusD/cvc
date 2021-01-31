@@ -3,7 +3,7 @@
  * Author: Daniel Prada
  * Author URI: http://github.com/PradatiusD
  * Description: A theme for the Center for Visual Communication.
- * Version: 1.0
+ * Version: 2.1.2
  * License: GNU General Public License v2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * Tags: simple
@@ -42,7 +42,6 @@ h1, h2, h3, h4, h5, h6
   &.subheader
     font-family: $body-font-family
     font-weight: 300
-
 
 // Navigation/Header
 
@@ -161,7 +160,6 @@ footer
 
 /* Google Map Shortcode */
 #map-canvas
-
   .gm-style-iw
     left: 7% !important
 
@@ -401,3 +399,9 @@ footer
   +max-screen(470px)
     height: 30px
     margin-top: 0
+
+
+@for $i from 1 through 30
+  .font-size-#{$i * 10}
+    &, p
+      font-size: #{$i / 10}em
