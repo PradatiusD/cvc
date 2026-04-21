@@ -1,6 +1,6 @@
 {
   "name": "cvc",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -11,7 +11,7 @@
     "type": "git",
     "url": "https://github.com/PradatiusD/cvc.git"
   },
-  "author": "",
+  "author": "PradatiusD",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/PradatiusD/cvc/issues"
